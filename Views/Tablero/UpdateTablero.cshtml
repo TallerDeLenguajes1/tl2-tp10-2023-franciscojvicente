@@ -1,0 +1,25 @@
+@model UsuarioTableroViewModel
+
+<h1 class="text-center">Modificar Tablero</h1>
+<form asp-controller="Tablero" asp-action="UpdateTablero">
+    <div class="mb-3">
+        <input hidden asp-for="@Model.Tablero.Id">
+        <label class="form-label">Id de usuario propietario</label>
+        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Tablero.Id_usuario_propietario">
+            <option selected>Seleccione uno</option>
+            @foreach (var usuario in Model.Usuarios)
+            {
+                <option>@usuario.Id</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input class="form-control w-50" asp-for="@Model.Tablero.Nombre" max="40" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Descripcion</label>
+        <input class="form-control w-50" asp-for="@Model.Tablero.Descripcion" max="200" required>
+    </div>
+    <button class="btn btn-primary mt-2" type="submit">Enviar</button>
+</form>

@@ -1,0 +1,10 @@
+@model Usuario
+
+<h1 class="text-center">Crear Usuario</h1>
+<form asp-controller="Usuario" asp-action="CreateUser">
+    <div>
+        <label asp-for="@Model.NombreDeUsuario" class="form-label">Nombre de Usuario</label>
+        <input class="form-control w-50" asp-for="@Model.NombreDeUsuario" maxlength="30" placeholder="Juan Pérez" required>
+        <button class="btn btn-primary mt-2" type="submit">Enviar</button>
+    </div>
+</form>

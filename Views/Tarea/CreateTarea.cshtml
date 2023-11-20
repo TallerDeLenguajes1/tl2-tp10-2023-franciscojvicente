@@ -1,0 +1,48 @@
+@model UserTableroTareaViewModel
+
+<h1 class="text-center">Crear Tarea</h1>
+<form asp-controller="Tarea" asp-action="CreateTarea">
+    <div class="mb-3">
+        <label class="form-label">Id tablero</label>
+        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Tarea.IdTablero">
+            <option selected>Seleccione uno</option>
+            @foreach (var tablero in Model.Tableros)
+            {
+                <option>@tablero.Id</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input class="form-control w-50" asp-for="@Model.Tarea.Nombre" max="40" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Estado</label>
+        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Tarea.EstadoTarea" required>
+        <option selected>Seleccione uno</option>
+        @foreach (var estado in Enum.GetValues(typeof(EstadoTarea)))
+        {
+            <option value="@estado">@estado</option>
+        }
+</select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Descripcion</label>
+        <input class="form-control w-50" asp-for="@Model.Tarea.Descripcion" max="200" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Color</label>
+        <input class="form-control w-50" asp-for="@Model.Tarea.Color" max="20" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Id de usuario propietario</label>
+        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Tarea.Id_usuario_asignado">
+            <option selected>Seleccione uno</option>
+            @foreach (var usuario in Model.Usuarios)
+            {
+                <option>@usuario.Id</option>
+            }
+        </select>
+    </div>
+    <button class="btn btn-primary mt-2" type="submit">Enviar</button>
+</form>
