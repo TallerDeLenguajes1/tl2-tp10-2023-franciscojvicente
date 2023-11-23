@@ -13,8 +13,8 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
         {
             readonly TableroRepository repositorioTablero = new();
             readonly UsuarioRepository repositorioUser = new();
+            // readonly GetTablerosViewModel getTablerosViewModel = new();
             private static List<Tablero> tableros = new();
-            readonly LoginController loginController = new();
             
             public IActionResult Index()
             {
@@ -22,6 +22,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
 
                 if (IsAdmin())
                 {
+                    // getTablerosViewModel.Tableros = repositorioTablero.GetAll();
                     tableros = repositorioTablero.GetAll();
                     return View(tableros);
                 }
@@ -29,6 +30,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 {
                     var idUser = HttpContext.Session.GetInt32("Id");
                     if(idUser == null) return NoContent();
+                    // getTablerosViewModel.Tableros = repositorioTablero.GetAllByUser((int)idUser);
                     tableros = repositorioTablero.GetAllByUser((int)idUser);
                     return View(tableros);
                 }

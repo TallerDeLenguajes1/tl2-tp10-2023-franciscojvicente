@@ -1,4 +1,4 @@
-@model UserTableroTareaViewModel
+@model UpdateTareaViewModel
 
 <h1 class="text-center">Modificar Tarea</h1>
 <form asp-controller="Tarea" asp-action="UpdateTarea">
@@ -19,7 +19,7 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Estado</label>
-        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Tarea.IdTablero" required>
+        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Tarea.EstadoTarea" required>
         <option selected>@Model.Tarea.EstadoTarea</option>
         @foreach (var estado in Enum.GetValues(typeof(EstadoTarea)))
         {
