@@ -1,10 +1,10 @@
-@model UsuarioTableroViewModel
+@model AltaTableroViewModel
 
 <h1 class="text-center">Crear Tablero</h1>
 <form asp-controller="Tablero" asp-action="CreateTablero">
     <div class="mb-3">
-        <label class="form-label">Id de usuario propietario</label>
-        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Tablero.Id_usuario_propietario">
+        <label class="form-label" asp-for="@Model.Id_usuario_propietario"></label>
+        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Id_usuario_propietario">
             <option selected>Seleccione uno</option>
             @foreach (var usuario in Model.Usuarios)
             {
@@ -13,12 +13,14 @@
         </select>
     </div>
     <div class="mb-3">
-        <label class="form-label">Nombre</label>
-        <input class="form-control w-50" asp-for="@Model.Tablero.Nombre" max="40" required>
+        <label class="form-label" asp-for="@Model.Nombre"></label>
+        <input class="form-control w-50" asp-for="@Model.Nombre" max="40" required>
+        <span asp-validation-for="@Model.Nombre" class="text-danger"></span>  
     </div>
     <div class="mb-3">
-        <label class="form-label">Descripcion</label>
-        <input class="form-control w-50" asp-for="@Model.Tablero.Descripcion" max="200" required>
+        <label class="form-label" asp-for="@Model.Descripcion"></label>
+        <input class="form-control w-50" asp-for="@Model.Descripcion" max="200" required>
+        <span asp-validation-for="@Model.Descripcion" class="text-danger"></span>  
     </div>
     <button class="btn btn-primary mt-2" type="submit">Enviar</button>
 </form>

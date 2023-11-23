@@ -1,4 +1,4 @@
-@model UsuarioTableroViewModel
+@model UpdateTableroViewModel
 
 <h1 class="text-center">Modificar Tablero</h1>
 <form asp-controller="Tablero" asp-action="UpdateTablero">
@@ -15,11 +15,11 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Nombre</label>
-        <input class="form-control w-50" asp-for="@Model.Tablero.Nombre" max="40" required>
+        <input class="form-control w-50" asp-for="@Model.Tablero.Nombre" max="40">
     </div>
     <div class="mb-3">
         <label class="form-label">Descripcion</label>
-        <input class="form-control w-50" asp-for="@Model.Tablero.Descripcion" max="200" required>
+        <input class="form-control w-50" asp-for="@Model.Tablero.Descripcion" max="200" value="@Model.Tablero.Descripcion">
     </div>
     <button class="btn btn-primary mt-2" type="submit">Enviar</button>
 </form>

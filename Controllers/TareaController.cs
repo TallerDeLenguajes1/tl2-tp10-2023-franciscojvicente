@@ -30,8 +30,9 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 }
                 if (IsOperator())
                 {
-                    // Código para operadores
-                    // tareas = repositorioTarea.GetAllByUser();
+                    var idUser = HttpContext.Session.GetInt32("Id");
+                    if(idUser == null) return NoContent();
+                    tareas = repositorioTarea.GetAllTareasByUser((int)idUser);
                     return View(tareas);
                 }
                 return NoContent();
@@ -60,7 +61,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             public IActionResult UpdateTarea(int idTarea)
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
-                if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
+                // if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 UserTableroTareaViewModel userTableroTareaViewModel = new();
                 userTableroTareaViewModel.Usuarios = repositorioUser.GetAll();
                 userTableroTareaViewModel.Tableros = repositorioTablero.GetAll();
@@ -78,7 +79,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             public IActionResult DeleteTarea(int idTarea)
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
-                if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
+                // if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 repositorioTarea.Delete(idTarea);
                 return RedirectToAction("Index");
             }
@@ -94,7 +95,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             }
             private bool IsOperator()
             {
-                if (HttpContext.Session != null && HttpContext.Session.GetString("rol") == "Operador") return true;
+                if (HttpContext.Session != null && HttpContext.Session.GetString("Rol") == "Operador") return true;
                 return false;
             }
 
