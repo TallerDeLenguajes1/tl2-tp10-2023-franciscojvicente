@@ -14,11 +14,13 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
 
         public void Create(Usuario usuario)
         {
-            var query = $"insert into Usuario (nombre_de_usuario) values (@nombre_de_usuario);";
+            var query = $"insert into Usuario (nombre_de_usuario, rol, contrasenia) values (@nombre_de_usuario, @rol, @contrasenia);";
             using SQLiteConnection connection = new(cadenaConexion);
             connection.Open();
             var command = new SQLiteCommand(query, connection);
             command.Parameters.Add(new SQLiteParameter("@nombre_de_usuario", usuario.NombreDeUsuario));
+            command.Parameters.Add(new SQLiteParameter("@rol", usuario.Rol));
+            command.Parameters.Add(new SQLiteParameter("@contrasenia", usuario.Contrasenia));
             command.ExecuteNonQuery();
             connection.Close();
         }
@@ -49,6 +51,8 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                         var usuario = new Usuario();
                         usuario.Id = Convert.ToInt32(reader["id"]);
                         usuario.NombreDeUsuario = reader["nombre_de_usuario"].ToString();
+                        usuario.Rol = (tl2_tp10_2023_franciscojvicente.Models.Roles)(int.TryParse(reader["rol"].ToString(), out var i) ? i : 0);
+                        usuario.Contrasenia = reader["contrasenia"].ToString();
                         usuarios.Add(usuario);
                     }
                 }
@@ -69,6 +73,8 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                 {
                     usuario.Id = Convert.ToInt32(reader["id"]);
                     usuario.NombreDeUsuario = reader["nombre_de_usuario"].ToString();
+                    usuario.Rol = (tl2_tp10_2023_franciscojvicente.Models.Roles)(int.TryParse(reader["rol"].ToString(), out var i) ? i : 0);
+                    usuario.Contrasenia = reader["contrasenia"].ToString();
                 }
             }
             connection.Close();
@@ -79,9 +85,11 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
         {
             SQLiteConnection connection = new(cadenaConexion);
             SQLiteCommand command = connection.CreateCommand();
-            command.CommandText = $"update Usuario set nombre_de_usuario = @nombre_de_usuario where id = @id;";
+            command.CommandText = $"update Usuario set nombre_de_usuario = @nombre_de_usuario, rol = @rol, contrasenia = @contrasenia where id = @id;";
             command.Parameters.Add(new SQLiteParameter("@id", id));
             command.Parameters.Add(new SQLiteParameter("@nombre_de_usuario", usuario.NombreDeUsuario));
+            command.Parameters.Add(new SQLiteParameter("@rol", usuario.Rol));
+            command.Parameters.Add(new SQLiteParameter("@contrasenia", usuario.Contrasenia));
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();

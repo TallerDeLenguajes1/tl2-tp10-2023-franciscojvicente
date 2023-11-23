@@ -13,6 +13,8 @@
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Nombre de Usuario</th>
+      <th scope="col">Rol</th>
+      <th></th>
     </tr>
   </thead>
   <tbody class="text-center">
@@ -20,6 +22,7 @@
     <tr>
         <th scope="row">@usuario.Id</th>
         <th>@usuario.NombreDeUsuario</th>
+        <th>@usuario.Rol</th>
         <td>
           <a class="text-decoration-none me-1 btn btn-primary" asp-controller="Usuario" asp-action="UpdateUser" asp-route-idUser="@usuario.Id">Editar</a>
           <a class="text-decoration-none ms-1 btn btn-primary" asp-controller="Usuario" asp-action="DeleteUser" asp-route-idUser="@usuario.Id" onclick="return confirm('¿Estas seguro que quieres eliminar el usuario?')">Eliminar</a> 

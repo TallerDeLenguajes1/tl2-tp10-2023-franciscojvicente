@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using tl2_tp10_2023_franciscojvicente.Models;
+using tl2_tp10_2023_franciscojvicente.ViewModel;
 using tl2_tp10_2023_franciscojvicente.Repository;
 
 namespace tl2_tp10_2023_franciscojvicente.Controllers
@@ -11,10 +12,12 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
         {
             readonly UsuarioRepository repositorioUser = new();
             private static List<Usuario> usuarios = new();
-            readonly LoginController loginController = new();
+
+
             public IActionResult Index()
             {
-                // if(!loginController.IsLogged()) return RedirectToAction("Login/Index");
+                if(!IsLogged()) return RedirectToAction("Login/Index");
+                if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 usuarios = repositorioUser.GetAll();
                 return View(usuarios);
             }
@@ -22,8 +25,9 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             [HttpGet]
             public IActionResult CreateUser()
             {
-                // if(!loginController.IsLogged()) return RedirectToAction("Login/Index");
-                return View(new Usuario());
+                if(!IsLogged()) return RedirectToAction("Login/Index");
+                if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
+                return View(new AltaUsuarioViewModel());
             }
     
             [HttpPost]
@@ -36,8 +40,12 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             [HttpGet]
             public IActionResult UpdateUser(int idUser)
             {
-                // if(!loginController.IsLogged()) return RedirectToAction("Login/Index");
-                return View(usuarios.FirstOrDefault(usuario => usuario.Id == idUser));
+                if(!IsLogged()) return RedirectToAction("Login/Index");
+                if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
+                var usuarioBuscado = usuarios.FirstOrDefault(usuario => usuario.Id == idUser);
+                if (usuarioBuscado == null) return NoContent();
+                var usuarioModificar = new UpdateUserViewModel(usuarioBuscado);
+                return View(usuarioModificar);
             }
 
             [HttpPost]
@@ -49,8 +57,21 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
 
             public IActionResult DeleteUser(int idUser)
             {
+                if(!IsLogged()) return RedirectToAction("Login/Index");
+                if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 repositorioUser.Delete(idUser);
                 return RedirectToAction("Index");
+            }
+
+            private bool IsLogged()
+            {
+            if (HttpContext.Session != null) return true;
+            return false;
+            }
+            private bool IsAdmin()
+            {
+                if (HttpContext.Session.GetString("Rol") == "Administrador") return true;
+                return false;
             }
         }
 }

@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using tl2_tp10_2023_franciscojvicente.Models;
 using tl2_tp10_2023_franciscojvicente.Repository;
+using tl2_tp10_2023_franciscojvicente.ViewModel;
 
 namespace tl2_tp10_2023_franciscojvicente.Controllers
 {
@@ -20,15 +21,27 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
 
             public IActionResult Index()
             {
-                // if(!loginController.IsLogged()) return RedirectToAction("Login/Index");
-                tareas = repositorioTarea.GetAll();
-                return View(tareas);
+                if (!IsLogged()) return RedirectToAction("Login", "Index");
+
+                if (IsAdmin())
+                {
+                    tareas = repositorioTarea.GetAll();
+                    return View(tareas);
+                }
+                if (IsOperator())
+                {
+                    // Código para operadores
+                    // tareas = repositorioTarea.GetAllByUser();
+                    return View(tareas);
+                }
+                return NoContent();
             }
     
             [HttpGet]
             public IActionResult CreateTarea()
             {
-                // if(!loginController.IsLogged()) return RedirectToAction("Login/Index");
+                if(!IsLogged()) return RedirectToAction("Login/Index");
+                if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 UserTableroTareaViewModel userTableroTareaViewModel = new();
                 userTableroTareaViewModel.Usuarios = repositorioUser.GetAll();
                 userTableroTareaViewModel.Tableros = repositorioTablero.GetAll();
@@ -38,7 +51,6 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             [HttpPost]
             public IActionResult? CreateTarea(Tarea tarea)
             {
-                
                 if (tarea == null) return null;
                 repositorioTarea.Create(tarea);
                 return RedirectToAction("Index");
@@ -47,7 +59,8 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             [HttpGet]
             public IActionResult UpdateTarea(int idTarea)
             {
-                // if(!loginController.IsLogged()) return RedirectToAction("Login/Index");
+                if(!IsLogged()) return RedirectToAction("Login/Index");
+                if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 UserTableroTareaViewModel userTableroTareaViewModel = new();
                 userTableroTareaViewModel.Usuarios = repositorioUser.GetAll();
                 userTableroTareaViewModel.Tableros = repositorioTablero.GetAll();
@@ -64,8 +77,25 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
 
             public IActionResult DeleteTarea(int idTarea)
             {
+                if(!IsLogged()) return RedirectToAction("Login/Index");
+                if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 repositorioTarea.Delete(idTarea);
                 return RedirectToAction("Index");
+            }
+            private bool IsLogged()
+            {
+            if (HttpContext.Session != null) return true;
+            return false;
+            }
+            private bool IsAdmin()
+            {
+                if (HttpContext.Session.GetString("Rol") == "Administrador") return true;
+                return false;
+            }
+            private bool IsOperator()
+            {
+                if (HttpContext.Session != null && HttpContext.Session.GetString("rol") == "Operador") return true;
+                return false;
             }
 
         }

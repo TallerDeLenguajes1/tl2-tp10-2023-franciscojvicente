@@ -5,6 +5,7 @@ namespace tl2_tp10_2023_franciscojvicente.Models
         private int id;
         private int id_usuario_propietario;
         private string? nombre;
+        
         private string? descripcion;
 
         public int Id { get => id; set => id = value; }

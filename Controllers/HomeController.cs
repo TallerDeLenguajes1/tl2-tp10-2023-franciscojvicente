@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using tl2_tp10_2023_franciscojvicente.Models;
 using tl2_tp10_2023_franciscojvicente.Repository;
+using tl2_tp10_2023_franciscojvicente.ViewModel;
 
 namespace tl2_tp10_2023_franciscojvicente.Controllers;
 
