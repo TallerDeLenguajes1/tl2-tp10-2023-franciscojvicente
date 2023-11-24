@@ -10,7 +10,13 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
     
         public class UsuarioController : Controller
         {
-            readonly UsuarioRepository repositorioUser = new();
+
+            private readonly IUsuarioRepository _usuarioRepository;
+
+            public UsuarioController(IUsuarioRepository usuarioRepository) {
+                _usuarioRepository = usuarioRepository;
+            }
+            // readonly UsuarioRepository _usuarioRepository = new();
             private static List<Usuario> usuarios = new();
 
 
@@ -18,7 +24,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
-                usuarios = repositorioUser.GetAll();
+                usuarios = _usuarioRepository.GetAll();
                 return View(usuarios);
             }
 
@@ -33,7 +39,8 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             [HttpPost]
             public IActionResult CreateUser(Usuario usuario)
             {
-                repositorioUser.Create(usuario);
+                if(!ModelState.IsValid) return RedirectToAction("Index");
+                _usuarioRepository.Create(usuario);
                 return RedirectToAction("Index");
             }
 
@@ -51,7 +58,10 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             [HttpPost]
             public IActionResult? UpdateUser(Usuario usuario)
             {
-                repositorioUser.Update(usuario, usuario.Id);
+                if(!IsLogged()) return RedirectToAction("Login/Index");
+                if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
+                if(!ModelState.IsValid) return RedirectToAction("Index");
+                _usuarioRepository.Update(usuario, usuario.Id);
                 return RedirectToAction("Index");
             }
 
@@ -59,7 +69,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
-                repositorioUser.Delete(idUser);
+                _usuarioRepository.Delete(idUser);
                 return RedirectToAction("Index");
             }
 

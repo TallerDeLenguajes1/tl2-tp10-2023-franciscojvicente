@@ -11,8 +11,16 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
     
         public class TableroController : Controller
         {
-            readonly TableroRepository repositorioTablero = new();
-            readonly UsuarioRepository repositorioUser = new();
+            private readonly ITableroRepository _tableroRepository;
+            private readonly IUsuarioRepository _usuarioRepository;
+
+            public TableroController(ITableroRepository tableroRepository, IUsuarioRepository usuarioRepository) {
+                    _tableroRepository = tableroRepository;
+                    _usuarioRepository = usuarioRepository;
+            }
+            
+            // readonly TableroRepository _tableroRepository = new();
+            // readonly UsuarioRepository _usuarioRepository = new();
             // readonly GetTablerosViewModel getTablerosViewModel = new();
             private static List<Tablero> tableros = new();
             
@@ -22,16 +30,16 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
 
                 if (IsAdmin())
                 {
-                    // getTablerosViewModel.Tableros = repositorioTablero.GetAll();
-                    tableros = repositorioTablero.GetAll();
+                    // getTablerosViewModel.Tableros = _tableroRepository.GetAll();
+                    tableros = _tableroRepository.GetAll();
                     return View(tableros);
                 }
                 if (IsOperator())
                 {
                     var idUser = HttpContext.Session.GetInt32("Id");
                     if(idUser == null) return NoContent();
-                    // getTablerosViewModel.Tableros = repositorioTablero.GetAllByUser((int)idUser);
-                    tableros = repositorioTablero.GetAllByUser((int)idUser);
+                    // getTablerosViewModel.Tableros = _tableroRepository.GetAllByUser((int)idUser);
+                    tableros = _tableroRepository.GetAllByUser((int)idUser);
                     return View(tableros);
                 }
                 return NoContent();
@@ -44,15 +52,18 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 AltaTableroViewModel altaTableroViewModel = new();
-                altaTableroViewModel.Usuarios = repositorioUser.GetAll();
+                altaTableroViewModel.Usuarios = _usuarioRepository.GetAll();
                 return View(altaTableroViewModel);
             }
 
             [HttpPost]
             public IActionResult? CreateTablero(Tablero tablero)
             {
+                if(!IsLogged()) return RedirectToAction("Login/Index");
+                if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
+                if(!ModelState.IsValid) return RedirectToAction("Index");
                 if (tablero == null) return null;
-                repositorioTablero.Create(tablero);
+                _tableroRepository.Create(tablero);
                 return RedirectToAction("Index");
             }
 
@@ -60,9 +71,8 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             public IActionResult UpdateTablero(int idTablero)
             {
             if(!IsLogged()) return RedirectToAction("Login/Index");
-            // if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
             UpdateTableroViewModel updateTableroViewModel = new();
-            updateTableroViewModel.Usuarios = repositorioUser.GetAll();
+            updateTableroViewModel.Usuarios = _usuarioRepository.GetAll();
             updateTableroViewModel.Tablero = tableros.FirstOrDefault(tablero => tablero.Id == idTablero);
             return View(updateTableroViewModel);
             }
@@ -71,8 +81,9 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             public IActionResult? UpdateTablero(Tablero tablero)
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
-                // if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
-                repositorioTablero.Update(tablero, tablero.Id);
+                if(!IsLogged()) return RedirectToAction("Login/Index");
+                if(!ModelState.IsValid) return RedirectToAction("Index");
+                _tableroRepository.Update(tablero, tablero.Id);
                 return RedirectToAction("Index");
             }
 
@@ -80,7 +91,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 // if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
-                repositorioTablero.Delete(idTablero);
+                _tableroRepository.Delete(idTablero);
                 return RedirectToAction("Index");
             }
 

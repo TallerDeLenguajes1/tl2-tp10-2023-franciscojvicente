@@ -23,6 +23,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             [HttpPost]
             public IActionResult Login(Usuario usuario)
             {
+                if(!ModelState.IsValid) return RedirectToAction("Index");
                 usuarios = repositorioUser.GetAll();
                 var usuarioLogeado = usuarios.FirstOrDefault(u => u.NombreDeUsuario == usuario.NombreDeUsuario && u.Contrasenia == usuario.Contrasenia);
                 if (usuarioLogeado == null) return RedirectToAction("Index");
@@ -35,7 +36,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 if (usuario.NombreDeUsuario == null || usuario.Contrasenia == null || usuario.Rol == null) return;
                 HttpContext.Session.SetInt32("Id", usuario.Id);
                 HttpContext.Session.SetString("NombreDeUsuario", usuario.NombreDeUsuario);
-                HttpContext.Session.SetString("Contrasenia", usuario.Contrasenia);
+                // HttpContext.Session.SetString("Contrasenia", usuario.Contrasenia);
                 HttpContext.Session.SetString("Rol", usuario.Rol.ToString());
             }
     }

@@ -3,47 +3,53 @@
 <h1 class="text-center">Modificar Tarea</h1>
 <form asp-controller="Tarea" asp-action="UpdateTarea">
     <div class="mb-3">
-        <input hidden asp-for="@Model.Tarea.Id">
-        <label class="form-label">Id tablero</label>
-        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Tarea.IdTablero">
-            <option selected>Seleccione uno</option>
+        <input hidden asp-for="@Model.Id">
+        <label class="form-label" asp-for="@Model.IdTablero"></label>
+        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.IdTablero">
+            <option>Seleccione uno</option>
             @foreach (var tablero in Model.Tableros)
             {
-                <option>@tablero.Id</option>
+                <option selected>@tablero.Id</option>
             }
         </select>
     </div>
     <div class="mb-3">
-        <label class="form-label">Nombre</label>
-        <input class="form-control w-50" asp-for="@Model.Tarea.Nombre" max="40" required>
+        <label class="form-label" asp-for="@Model.Nombre"></label>
+        <input class="form-control w-50" asp-for="@Model.Nombre" max="40" value="@Model.Nombre">
+        <span asp-validation-for="@Model.Nombre" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">Estado</label>
-        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Tarea.EstadoTarea" required>
-        <option selected>@Model.Tarea.EstadoTarea</option>
+        <label class="form-label" asp-for="@Model.EstadoTarea"></label>
+        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.EstadoTarea" required>
+        <option selected>@Model.EstadoTarea</option>
         @foreach (var estado in Enum.GetValues(typeof(EstadoTarea)))
         {
             <option value="@estado">@estado</option>
         }
-</select>
+    </select>
+     <span asp-validation-for="@Model.EstadoTarea" class="text-danger"></span> 
     </div>
     <div class="mb-3">
-        <label class="form-label">Descripcion</label>
-        <input class="form-control w-50" asp-for="@Model.Tarea.Descripcion" max="200" required>
+        <label class="form-label" asp-for="@Model.Descripcion"></label>
+        <input class="form-control w-50" asp-for="@Model.Descripcion" max="200" value="@Model.Descripcion">
+        <span asp-validation-for="@Model.Descripcion" class="text-danger"></span> 
     </div>
     <div class="mb-3">
-        <label class="form-label">Color</label>
-        <input class="form-control w-50" asp-for="@Model.Tarea.Color" max="20" required>
+        <label class="form-label" asp-for="@Model.Color"></label>
+        <input class="form-control w-50" asp-for="@Model.Color" max="20" value="@Model.Color">
+        <span asp-validation-for="@Model.Color" class="text-danger"></span> 
     </div>
     <div class="mb-3">
-        <label class="form-label">Id de usuario propietario</label>
-        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Tarea.Id_usuario_asignado">
-            <option selected>@Model.Tarea.Id_usuario_asignado</option>
+        <label class="form-label" asp-for="@Model.Id_usuario_asignado"></label>
+        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Id_usuario_asignado">
+            <option >@Model.Id_usuario_asignado</option>
             @foreach (var usuario in Model.Usuarios)
             {
-                <option>@usuario.Id</option>
+                <option selected>@usuario.Id</option>
             }
         </select>
     </div>
     <button class="btn btn-primary mt-2" type="submit">Enviar</button>
 </form>
+
+@section Scripts{<partial name="_ValidationScriptsPartial"/>}

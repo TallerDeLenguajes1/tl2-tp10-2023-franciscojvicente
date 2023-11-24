@@ -1,3 +1,4 @@
+using tl2_tp10_2023_franciscojvicente.ViewModel;
 namespace tl2_tp10_2023_franciscojvicente.Models
 {
     public class Tarea
@@ -17,5 +18,26 @@ namespace tl2_tp10_2023_franciscojvicente.Models
         public string? Descripcion { get => descripcion; set => descripcion = value; }
         public string? Color { get => color; set => color = value; }
         public int Id_usuario_asignado { get => id_usuario_asignado; set => id_usuario_asignado = value; }
+        // constructor de tarea que reciba un objeto viewmodel y hago la asignacion 1 a 1
+        public Tarea(AltaTareaViewModel altaTareaViewModel) {
+            IdTablero = altaTareaViewModel.IdTablero;
+            Nombre = altaTareaViewModel.Nombre;
+            EstadoTarea = altaTareaViewModel.EstadoTarea;
+            Descripcion = altaTareaViewModel.Descripcion;
+            Color = altaTareaViewModel.Color;
+            Id_usuario_asignado = altaTareaViewModel.Id_usuario_asignado;
+        }
+        public Tarea(UpdateTareaViewModel updateTareaViewModel) {
+            Id = updateTareaViewModel.Id;
+            IdTablero = updateTareaViewModel.IdTablero;
+            Nombre = updateTareaViewModel.Nombre;
+            EstadoTarea = updateTareaViewModel.EstadoTarea;
+            Descripcion = updateTareaViewModel.Descripcion;
+            Color = updateTareaViewModel.Color;
+            Id_usuario_asignado = updateTareaViewModel.Id_usuario_asignado;
+        }
+        public Tarea() {
+
+        }
     }
 }
