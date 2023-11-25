@@ -4,38 +4,29 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel
 {
     public class AltaTareaViewModel
     {
-        private List<Usuario>? usuarios;
-        private List<Tablero>? tableros;
-        private EstadoTarea estadoTarea;
-        private int idTablero;
-        private string? nombre;
-        private string? descripcion;
-        private string? color;
-        private int id_usuario_asignado;
-
         [Display(Name = "Id del tablero")]
-        public int IdTablero { get => idTablero; set => idTablero = value; }
+        public int IdTablero { get; set; }
 
         [Required(ErrorMessage = "El nombre es obligatorio.")]
         [Display(Name = "Nombre")] 
-        public string? Nombre { get => nombre; set => nombre = value; }
+        public string? Nombre { get; set; }
 
         [Required(ErrorMessage = "Este campo es requerido.")]
         [Display(Name = "Estado")] 
-        public EstadoTarea EstadoTarea { get => estadoTarea; set => estadoTarea = value; }
+        public EstadoTarea EstadoTarea { get; set; }
 
         [Required(ErrorMessage = "La descripción es obligatoria.")]
         [Display(Name = "Descripción")] 
-        public string? Descripcion { get => descripcion; set => descripcion = value; }
+        public string? Descripcion { get; set; }
 
         [Required(ErrorMessage = "El color es obligatorio.")]
         [Display(Name = "Color")] 
-        public string? Color { get => color; set => color = value; }
+        public string? Color { get; set; }
 
         [Display(Name = "Id del usuario asignado")] 
-        public int Id_usuario_asignado { get => id_usuario_asignado; set => id_usuario_asignado = value; }
-        public List<Usuario>? Usuarios { get => usuarios; set => usuarios = value; }
-        public List<Tablero>? Tableros { get => tableros; set => tableros = value; }
+        public int Id_usuario_asignado { get; set; }
+        public List<Usuario>? Usuarios { get; set; }
+        public List<Tablero>? Tableros { get; set; }
 
         public AltaTareaViewModel(Tarea tarea)
         {

@@ -3,22 +3,17 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel
 {
     public class UserTableroTareaViewModel
     {
-        private List<Usuario>? usuarios;
-        private List<Tablero>? tableros;
-        private Tarea? tarea;
-        private EstadoTarea estadoTarea;
-
-        public List<Usuario>? Usuarios { get => usuarios; set => usuarios = value; }
-        public List<Tablero>? Tableros { get => tableros; set => tableros = value; }
-        public Tarea? Tarea { get => tarea; set => tarea = value; }
-        public EstadoTarea EstadoTarea { get => estadoTarea; set => estadoTarea = value; }
+        public List<Usuario>? Usuarios { get; set; }
+        public List<Tablero>? Tableros { get; set; }
+        public Tarea? Tarea { get; set; }
+        public EstadoTarea EstadoTarea { get; set; }
 
         public UserTableroTareaViewModel()
         {
-            this.Usuarios = new List<Usuario>();
-            this.Tableros = new List<Tablero>();
-            this.Tarea = new Tarea();
-            this.EstadoTarea = new EstadoTarea();
+            Usuarios = new List<Usuario>();
+            Tableros = new List<Tablero>();
+            Tarea = new Tarea();
+            EstadoTarea = new EstadoTarea();
         }
     }
 }

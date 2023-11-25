@@ -5,22 +5,18 @@ using System.ComponentModel.DataAnnotations;
 namespace tl2_tp10_2023_franciscojvicente.ViewModel {
     public class AltaTableroViewModel
     {
-        private List<Usuario>? usuarios;
-        private int id_usuario_propietario;
-        private string? nombre;
-        private string? descripcion;
 
         [Display(Name = "Id del usuario propietario")] 
-        public int Id_usuario_propietario { get => id_usuario_propietario; set => id_usuario_propietario = value; }
+        public int Id_usuario_propietario { get; set; }
 
         [Required(ErrorMessage = "El nombre es obligatorio.")]
         [Display(Name = "Nombre")] 
-        public string? Nombre { get => nombre; set => nombre = value; }
+        public string? Nombre { get; set; }
 
         [Required(ErrorMessage = "La descripción es obligatoria.")]
         [Display(Name = "Descripción")] 
-        public string? Descripcion { get => descripcion; set => descripcion = value; }
-        public List<Usuario>? Usuarios { get => usuarios; set => usuarios = value; }
+        public string? Descripcion { get; set; }
+        public List<Usuario>? Usuarios { get; set; }
 
         public AltaTableroViewModel(Tablero tablero)
         {
