@@ -28,7 +28,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
         [HttpGet]
         public IActionResult CreateUser()
         {
-            if(!IsLogged()) return RedirectToAction("Login/Index");
+            if(!IsLogged()) return RedirectToRoute(new { controller = "Home", action = "Index" });
             if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
             return View(new AltaUsuarioViewModel());
         }
@@ -75,7 +75,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
 
         private bool IsLogged()
         {
-        if (HttpContext.Session != null) return true;
+        if (HttpContext.Session != null && HttpContext.Session.GetString("Id") != null && HttpContext.Session.GetString("NombreDeUsuario") != null && HttpContext.Session.GetString("Rol") != null) return true;
         return false;
         }
         private bool IsAdmin()

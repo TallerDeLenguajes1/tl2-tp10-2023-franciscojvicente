@@ -45,6 +45,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
             AltaTableroViewModel altaTableroViewModel = new();
             altaTableroViewModel.Usuarios = _usuarioRepository.GetAll();
+            if (altaTableroViewModel.Usuarios == null) return NoContent();
             return View(altaTableroViewModel);
         }
 
@@ -100,7 +101,6 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
         public IActionResult DeleteTablero(int idTablero)
         {
             if(!IsLogged()) return RedirectToAction("Login/Index");
-            // if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
             _tableroRepository.Delete(idTablero);
             return RedirectToAction("Index");
         }

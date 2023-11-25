@@ -25,8 +25,6 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
 
             [Display(Name = "Id del usuario asignado")] 
             public int Id_usuario_asignado { get; set; }
-            private EstadoTarea estadoTarea;
-
             public List<Usuario>? Usuarios { get; set; }
             public List<Tablero>? Tableros { get; set; }
             public int Id { get; set; }
