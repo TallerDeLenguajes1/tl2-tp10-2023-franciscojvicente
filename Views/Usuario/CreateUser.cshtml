@@ -15,7 +15,7 @@
     <div class="mb-3">
         <label asp-for="@Model.Rol" class="form-label"></label>
         <select class="form-select w-50" asp-for="@Model.Rol">
-            <option selected>Seleccione uno</option>
+            <option>Seleccione uno</option>
         @foreach (var rol in Enum.GetValues(typeof(Roles)))
         {
             <option value="@rol">@rol</option>

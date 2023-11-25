@@ -7,8 +7,8 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
 
         public List<Tablero>? Tableros { get => tableros; set => tableros = value; }
 
-        public GetTablerosViewModel() {
-            
+        public GetTablerosViewModel(List<Tablero> tableros) {
+            this.tableros = tableros;
         }
     }
 }

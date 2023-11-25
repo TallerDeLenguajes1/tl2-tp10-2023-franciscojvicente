@@ -6,7 +6,8 @@ using tl2_tp10_2023_franciscojvicente.ViewModel;
 
 namespace tl2_tp10_2023_franciscojvicente.Controllers
 {
-        using Microsoft.AspNetCore.Mvc;
+    using System.Net;
+    using Microsoft.AspNetCore.Mvc;
     
         public class TareaController : Controller
         {
@@ -23,9 +24,9 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             // readonly TareaRepository _tareaRepository = new();
             // readonly UsuarioRepository _usuarioRepository = new();
             // readonly TableroRepository _tableroRepository = new();
-            readonly LoginController loginController = new();
-            private static GetTareasViewModel getTareasViewModel = new();
-            private static List<Tarea> tareas = new();
+            // readonly LoginController loginController = new();
+            // private static GetTareasViewModel getTareasViewModel = new();
+            // private static List<Tarea> tareas = new();
         
 
             public IActionResult Index()
@@ -34,8 +35,9 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
 
                 if (IsAdmin())
                 {
-                    getTareasViewModel.Tareas = _tareaRepository.GetAll();
-                    // tareas = _tareaRepository.GetAll();
+                    // getTareasViewModel.Tareas = _tareaRepository.GetAll();
+                    var tareas = _tareaRepository.GetAll();
+                    var getTareasViewModel = new GetTareasViewModel(tareas);
                     return View(getTareasViewModel);
                     // return View(tareas);
                 }
@@ -43,9 +45,10 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 {
                     var idUser = HttpContext.Session.GetInt32("Id");
                     if(idUser == null) return NoContent();
-                    getTareasViewModel.Tareas = _tareaRepository.GetAllTareasByUser((int)idUser);
+                    var tareas = _tareaRepository.GetAllTareasByUser((int)idUser);
                     // tareas = _tareaRepository.GetAllTareasByUser((int)idUser);
                     // return View(tareas);
+                    var getTareasViewModel = new GetTareasViewModel(tareas);
                     return View(getTareasViewModel);
                 }
                 return NoContent();
@@ -77,14 +80,27 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             public IActionResult UpdateTarea(int idTarea)
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
-                UpdateTareaViewModel updateTareaViewModel = new();
-                updateTareaViewModel.Usuarios = _usuarioRepository.GetAll();
-                updateTareaViewModel.Tableros = _tableroRepository.GetAll();
-                // if (tareas == null) return NoContent();
-                if (getTareasViewModel.Tareas == null) return NoContent();
-                // updateTareaViewModel.Tarea = tareas.FirstOrDefault(tarea => tarea.Id == idTarea);
-                // updateTareaViewModel.Tarea = getTareasViewModel.Tareas.FirstOrDefault(tarea => tarea.Id == idTarea);
-                return View(updateTareaViewModel);
+                if (IsAdmin())
+                {
+                    var tareas = _tareaRepository.GetAll();
+                    if (tareas == null) return NoContent();
+                    var tarea = tareas.FirstOrDefault(tarea => tarea.Id == idTarea);
+                    if (tarea == null) return NoContent();
+                    UpdateTareaViewModel updateTareaViewModel = new(tarea);
+                    updateTareaViewModel.Usuarios = _usuarioRepository.GetAll();
+                    updateTareaViewModel.Tableros = _tableroRepository.GetAll();
+                    return View(updateTareaViewModel);
+                } else {
+                    var idUser = HttpContext.Session.GetInt32("Id");
+                    if(idUser == null) return NoContent();
+                    var tareas = _tareaRepository.GetAllTareasByUser((int)idUser);
+                    var tarea = tareas.FirstOrDefault(tarea => tarea.Id == idTarea);
+                    if (tarea == null) return NoContent();
+                    UpdateTareaViewModel updateTareaViewModel = new(tarea);
+                    updateTareaViewModel.Usuarios = _usuarioRepository.GetAll();
+                    updateTareaViewModel.Tableros = _tableroRepository.GetAll();
+                    return View(updateTareaViewModel);
+                }
             }
 
             [HttpPost]

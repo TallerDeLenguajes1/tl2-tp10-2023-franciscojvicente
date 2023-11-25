@@ -16,16 +16,18 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             public UsuarioController(IUsuarioRepository usuarioRepository) {
                 _usuarioRepository = usuarioRepository;
             }
-            // readonly UsuarioRepository _usuarioRepository = new();
-            private static List<Usuario> usuarios = new();
+
+            // readonly UsuarioRepository repositorioUser = new();
+            // private static List<Usuario> usuarios = new();
 
 
             public IActionResult Index()
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
-                usuarios = _usuarioRepository.GetAll();
-                return View(usuarios);
+                var usuarios = _usuarioRepository.GetAll();
+                var getUsuariosViewModel = new GetUsuariosViewModel(usuarios);
+                return View(getUsuariosViewModel);
             }
 
             [HttpGet]
@@ -37,9 +39,10 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             }
     
             [HttpPost]
-            public IActionResult CreateUser(Usuario usuario)
+            public IActionResult CreateUser(AltaUsuarioViewModel altaUsuarioViewModel)
             {
                 if(!ModelState.IsValid) return RedirectToAction("Index");
+                var usuario = new Usuario(altaUsuarioViewModel);
                 _usuarioRepository.Create(usuario);
                 return RedirectToAction("Index");
             }
@@ -49,6 +52,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
+                var usuarios = _usuarioRepository.GetAll();
                 var usuarioBuscado = usuarios.FirstOrDefault(usuario => usuario.Id == idUser);
                 if (usuarioBuscado == null) return NoContent();
                 var usuarioModificar = new UpdateUserViewModel(usuarioBuscado);
@@ -56,11 +60,12 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             }
 
             [HttpPost]
-            public IActionResult? UpdateUser(Usuario usuario)
+            public IActionResult? UpdateUser(UpdateUserViewModel updateUserViewModel)
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 if(!ModelState.IsValid) return RedirectToAction("Index");
+                var usuario = new Usuario(updateUserViewModel);
                 _usuarioRepository.Update(usuario, usuario.Id);
                 return RedirectToAction("Index");
             }

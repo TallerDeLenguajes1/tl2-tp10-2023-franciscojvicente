@@ -16,7 +16,7 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel
         [Display(Name = "Id del tablero")]
         public int IdTablero { get => idTablero; set => idTablero = value; }
 
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "El nombre es obligatorio.")]
         [Display(Name = "Nombre")] 
         public string? Nombre { get => nombre; set => nombre = value; }
 
@@ -24,11 +24,11 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel
         [Display(Name = "Estado")] 
         public EstadoTarea EstadoTarea { get => estadoTarea; set => estadoTarea = value; }
 
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "La descripción es obligatoria.")]
         [Display(Name = "Descripción")] 
         public string? Descripcion { get => descripcion; set => descripcion = value; }
 
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "El color es obligatorio.")]
         [Display(Name = "Color")] 
         public string? Color { get => color; set => color = value; }
 
@@ -47,7 +47,6 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel
             Id_usuario_asignado = tarea.Id_usuario_asignado;
             Usuarios = new List<Usuario>();
             Tableros = new List<Tablero>();
-            // this.EstadoTarea = new EstadoTarea();
         }
         public AltaTareaViewModel() {
 

@@ -12,8 +12,15 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
 
     public class LoginController : Controller
         {
-            private static List<Usuario> usuarios = new ();
-            readonly UsuarioRepository repositorioUser = new();
+
+            private readonly IUsuarioRepository _usuarioRepository;
+
+            public LoginController(IUsuarioRepository usuarioRepository) {
+                _usuarioRepository = usuarioRepository;
+            }
+
+        private static List<Usuario> usuarios = new ();
+            // readonly UsuarioRepository _usuarioRepository = new();
             
             public IActionResult Index()
             {
@@ -24,7 +31,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             public IActionResult Login(Usuario usuario)
             {
                 if(!ModelState.IsValid) return RedirectToAction("Index");
-                usuarios = repositorioUser.GetAll();
+                usuarios = _usuarioRepository.GetAll();
                 var usuarioLogeado = usuarios.FirstOrDefault(u => u.NombreDeUsuario == usuario.NombreDeUsuario && u.Contrasenia == usuario.Contrasenia);
                 if (usuarioLogeado == null) return RedirectToAction("Index");
                 LoguearUsuario(usuarioLogeado);

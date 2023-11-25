@@ -11,10 +11,12 @@
                 <option>@tablero.Id</option>
             }
         </select>
+        <span asp-validation-for="@Model.IdTablero" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label class="form-label" asp-for="@Model.Nombre"></label>
-        <input class="form-control w-50" asp-for="@Model.Nombre" max="40" required>
+        <input class="form-control w-50" asp-for="@Model.Nombre">
+        <span asp-validation-for="@Model.Nombre" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label class="form-label" asp-for="@Model.EstadoTarea"></label>
@@ -24,15 +26,18 @@
         {
             <option value="@estado">@estado</option>
         }
-</select>
+        </select>
+        <span asp-validation-for="@Model.EstadoTarea" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label class="form-label" asp-for="@Model.Descripcion"></label>
-        <input class="form-control w-50" asp-for="@Model.Descripcion" max="200" required>
+        <input class="form-control w-50" asp-for="@Model.Descripcion">
+        <span asp-validation-for="@Model.Descripcion" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label class="form-label" asp-for="@Model.Color"></label>
-        <input class="form-control w-50" asp-for="@Model.Color" max="20" required>
+        <input class="form-control w-50" asp-for="@Model.Color">
+        <span asp-validation-for="@Model.Color" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label class="form-label" asp-for="@Model.Id_usuario_asignado"></label>
@@ -43,6 +48,7 @@
                 <option>@usuario.Id</option>
             }
         </select>
+        <span asp-validation-for="@Model.Id_usuario_asignado" class="text-danger"></span>
     </div>
     <button class="btn btn-primary mt-2" type="submit">Enviar</button>
 </form>

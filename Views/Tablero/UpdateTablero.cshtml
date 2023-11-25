@@ -3,23 +3,26 @@
 <h1 class="text-center">Modificar Tablero</h1>
 <form asp-controller="Tablero" asp-action="UpdateTablero">
     <div class="mb-3">
-        <input hidden asp-for="@Model.Tablero.Id">
-        <label class="form-label">Id de usuario propietario</label>
-        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Tablero.Id_usuario_propietario">
-            <option selected>Seleccione uno</option>
+        <input hidden asp-for="@Model.Id">
+        <label class="form-label" asp-for="@Model.Id_usuario_propietario"></label>
+        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Id_usuario_propietario">
+            <option>Seleccione uno</option>
             @foreach (var usuario in Model.Usuarios)
             {
-                <option>@usuario.Id</option>
+                <option selected>@usuario.Id</option>
             }
         </select>
+        <span asp-validation-for="@Model.Id_usuario_propietario" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">Nombre</label>
-        <input class="form-control w-50" asp-for="@Model.Tablero.Nombre" max="40">
+        <label class="form-label" asp-for="@Model.Nombre"></label>
+        <input class="form-control w-50" asp-for="@Model.Nombre" value="@Model.Nombre">
+        <span asp-validation-for="@Model.Nombre" class="text-danger"></span>  
     </div>
     <div class="mb-3">
-        <label class="form-label">Descripcion</label>
-        <input class="form-control w-50" asp-for="@Model.Tablero.Descripcion" max="200" value="@Model.Tablero.Descripcion">
+        <label class="form-label" asp-for="@Model.Descripcion"></label>
+        <input class="form-control w-50" asp-for="@Model.Descripcion">
+        <span asp-validation-for="@Model.Descripcion" class="text-danger"></span>
     </div>
     <button class="btn btn-primary mt-2" type="submit">Enviar</button>
 </form>

@@ -1,4 +1,4 @@
-@model List<Tablero>
+@model GetTablerosViewModel
 
 <div class="text-center">
     <h1 class="text-primary">Tableros</h1>
@@ -15,7 +15,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var tablero in Model) {
+        @foreach (var tablero in Model.Tableros) {
             <tr>
                 <th scope="row">@tablero.Id</th>
                 <th scope="row">@tablero.Id_usuario_propietario</th>

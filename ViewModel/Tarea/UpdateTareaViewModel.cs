@@ -17,7 +17,7 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
             [Display(Name = "Id del tablero")]
             public int IdTablero { get => idTablero; set => idTablero = value; }
 
-            [Required(ErrorMessage = "Este campo es requerido.")]
+            [Required(ErrorMessage = "El nombre es requerido.")]
             [Display(Name = "Nombre")] 
             public string? Nombre { get => nombre; set => nombre = value; }
 
@@ -25,11 +25,11 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
             [Display(Name = "Estado")] 
             public EstadoTarea EstadoTarea { get => estadoTarea; set => estadoTarea = value; }
 
-            [Required(ErrorMessage = "Este campo es requerido.")]
+            [Required(ErrorMessage = "La descripción es requerida.")]
             [Display(Name = "Descripción")] 
             public string? Descripcion { get => descripcion; set => descripcion = value; }
 
-            [Required(ErrorMessage = "Este campo es requerido.")]
+            [Required(ErrorMessage = "El color es requerido.")]
             [Display(Name = "Color")] 
             public string? Color { get => color; set => color = value; }
 
@@ -43,13 +43,22 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
 
         // public Tarea? Tarea { get => tarea; set => tarea = value; }
 
-        public UpdateTareaViewModel()
+            public UpdateTareaViewModel(Tarea tarea)
             {
                 Usuarios = new List<Usuario>();
                 Tableros = new List<Tablero>();
-                // Tarea = new Tarea();
-                EstadoTarea = new EstadoTarea();
+                Id = tarea.Id;
+                IdTablero = tarea.IdTablero;
+                Nombre = tarea.Nombre;
+                EstadoTarea = tarea.EstadoTarea;
+                Descripcion = tarea.Descripcion;
+                Color = tarea.Color;
+                Id_usuario_asignado = tarea.Id_usuario_asignado;
+            }
+            
+            public UpdateTareaViewModel() {
                 
             }
+
         }
 }

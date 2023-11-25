@@ -8,8 +8,8 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel
 
         public List<Tarea>? Tareas { get => tareas; set => tareas = value; }
 
-        public GetTareasViewModel() {
-            Tareas = new();
+        public GetTareasViewModel(List<Tarea> tareas) {
+            this.tareas = tareas;
         }
     }
 }

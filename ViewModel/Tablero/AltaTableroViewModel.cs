@@ -10,15 +10,14 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
         private string? nombre;
         private string? descripcion;
 
-
         [Display(Name = "Id del usuario propietario")] 
         public int Id_usuario_propietario { get => id_usuario_propietario; set => id_usuario_propietario = value; }
 
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "El nombre es obligatorio.")]
         [Display(Name = "Nombre")] 
         public string? Nombre { get => nombre; set => nombre = value; }
 
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "La descripción es obligatoria.")]
         [Display(Name = "Descripción")] 
         public string? Descripcion { get => descripcion; set => descripcion = value; }
         public List<Usuario>? Usuarios { get => usuarios; set => usuarios = value; }
@@ -26,7 +25,7 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
 
         public AltaTableroViewModel(Tablero tablero)
         {
-            this.Usuarios = new List<Usuario>();
+            Usuarios = new List<Usuario>();
             Id_usuario_propietario = tablero.Id_usuario_propietario;
             Nombre = tablero.Nombre;
             Descripcion = tablero.Descripcion;

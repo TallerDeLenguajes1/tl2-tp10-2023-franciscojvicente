@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-@model List<Usuario>
+@model GetUsuariosViewModel
 
 <div class="text-center">
     <h1 class="text-primary">Usuarios</h1>
@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody class="text-center">
-    @foreach (var usuario in Model) {
+    @foreach (var usuario in Model.Usuarios) {
     <tr>
         <th scope="row">@usuario.Id</th>
         <th>@usuario.NombreDeUsuario</th>

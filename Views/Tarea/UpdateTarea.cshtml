@@ -12,10 +12,11 @@
                 <option selected>@tablero.Id</option>
             }
         </select>
+        <span asp-validation-for="@Model.IdTablero" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label class="form-label" asp-for="@Model.Nombre"></label>
-        <input class="form-control w-50" asp-for="@Model.Nombre" max="40" value="@Model.Nombre">
+        <input class="form-control w-50" asp-for="@Model.Nombre" value="@Model.Nombre">
         <span asp-validation-for="@Model.Nombre" class="text-danger"></span>
     </div>
     <div class="mb-3">
@@ -31,12 +32,12 @@
     </div>
     <div class="mb-3">
         <label class="form-label" asp-for="@Model.Descripcion"></label>
-        <input class="form-control w-50" asp-for="@Model.Descripcion" max="200" value="@Model.Descripcion">
+        <input class="form-control w-50" asp-for="@Model.Descripcion" value="@Model.Descripcion">
         <span asp-validation-for="@Model.Descripcion" class="text-danger"></span> 
     </div>
     <div class="mb-3">
         <label class="form-label" asp-for="@Model.Color"></label>
-        <input class="form-control w-50" asp-for="@Model.Color" max="20" value="@Model.Color">
+        <input class="form-control w-50" asp-for="@Model.Color" value="@Model.Color">
         <span asp-validation-for="@Model.Color" class="text-danger"></span> 
     </div>
     <div class="mb-3">

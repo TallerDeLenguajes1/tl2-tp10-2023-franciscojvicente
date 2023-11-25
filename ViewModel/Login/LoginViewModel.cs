@@ -9,11 +9,11 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel
         private string? nombreDeUsuario;
         private string? contrasenia;
 
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "El nombre de usuario es requerido.")]
         [Display(Name = "Nombre de Usuario")] 
         public string? NombreDeUsuario { get => nombreDeUsuario; set => nombreDeUsuario = value; }
 
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "La contraseña es requerida.")]
         [PasswordPropertyText(true)]
         [Display(Name = "Contraseña")]
         public string? Contrasenia { get => contrasenia; set => contrasenia = value; }
