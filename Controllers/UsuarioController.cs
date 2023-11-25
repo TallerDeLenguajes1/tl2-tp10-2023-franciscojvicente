@@ -18,7 +18,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
 
         public IActionResult Index()
         {
-            if(!IsLogged()) return RedirectToAction("Login/Index");
+            if(!IsLogged()) return RedirectToRoute(new { controller = "Home", action = "Index" });
             if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
             var usuarios = _usuarioRepository.GetAll();
             var getUsuariosViewModel = new GetUsuariosViewModel(usuarios);

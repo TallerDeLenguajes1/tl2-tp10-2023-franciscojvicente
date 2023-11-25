@@ -30,7 +30,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             var usuarios = _usuarioRepository.GetAll();
             var usuarioLogeado = usuarios.FirstOrDefault(u => u.NombreDeUsuario == loginViewModel.NombreDeUsuario && u.Contrasenia == loginViewModel.Contrasenia);
             if (usuarioLogeado == null) return RedirectToAction("Index");
-            LoginUsuario(usuarioLogeado);
+            LoginUsuario(new LoginUsuarioViewModel(usuarioLogeado));
             return RedirectToRoute(new { controller = "Home", action = "Index" });
         }
 
@@ -40,12 +40,12 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             return RedirectToRoute(new { controller = "Login", action = "Index" });
         }
 
-        private void LoginUsuario(Usuario usuario)
+        private void LoginUsuario(LoginUsuarioViewModel loginUsuarioViewModel)
         {
-            if (usuario.NombreDeUsuario == null || usuario.Contrasenia == null || usuario.Rol == null) return;
-            HttpContext.Session.SetInt32("Id", usuario.Id);
-            HttpContext.Session.SetString("NombreDeUsuario", usuario.NombreDeUsuario);
-            HttpContext.Session.SetString("Rol", usuario.Rol.ToString());
+            if (loginUsuarioViewModel.Id == 0 || loginUsuarioViewModel.NombreDeUsuario == null || loginUsuarioViewModel.Rol == null) return;
+            HttpContext.Session.SetInt32("Id", loginUsuarioViewModel.Id);
+            HttpContext.Session.SetString("NombreDeUsuario", loginUsuarioViewModel.NombreDeUsuario);
+            HttpContext.Session.SetString("Rol", loginUsuarioViewModel.Rol.ToString());
         }
         
         private void LogoutUsuario()
