@@ -17,7 +17,5 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel
         [PasswordPropertyText(true)]
         [Display(Name = "Contraseña")]
         public string? Contrasenia { get => contrasenia; set => contrasenia = value; }
-        
-        
     }
 }

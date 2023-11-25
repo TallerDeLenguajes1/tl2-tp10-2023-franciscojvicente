@@ -21,7 +21,6 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
         [Display(Name = "Descripción")] 
         public string? Descripcion { get => descripcion; set => descripcion = value; }
         public List<Usuario>? Usuarios { get => usuarios; set => usuarios = value; }
-        // public List<Tablero> Tableros { get; internal set; }
 
         public AltaTableroViewModel(Tablero tablero)
         {

@@ -9,7 +9,7 @@
             <option>Seleccione uno</option>
             @foreach (var tablero in Model.Tableros)
             {
-                <option selected>@tablero.Id</option>
+                <option>@tablero.Id</option>
             }
         </select>
         <span asp-validation-for="@Model.IdTablero" class="text-danger"></span>
@@ -46,7 +46,7 @@
             <option >@Model.Id_usuario_asignado</option>
             @foreach (var usuario in Model.Usuarios)
             {
-                <option selected>@usuario.Id</option>
+                <option>@usuario.Id</option>
             }
         </select>
     </div>

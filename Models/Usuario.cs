@@ -26,7 +26,6 @@ namespace tl2_tp10_2023_franciscojvicente.Models
             Contrasenia = updateUserViewModel.Contrasenia;
         }
         public Usuario() {
-
         }
     }
 }

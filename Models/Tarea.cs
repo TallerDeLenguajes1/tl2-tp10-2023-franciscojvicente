@@ -18,7 +18,6 @@ namespace tl2_tp10_2023_franciscojvicente.Models
         public string? Descripcion { get => descripcion; set => descripcion = value; }
         public string? Color { get => color; set => color = value; }
         public int Id_usuario_asignado { get => id_usuario_asignado; set => id_usuario_asignado = value; }
-        // constructor de tarea que reciba un objeto viewmodel y hago la asignacion 1 a 1
         public Tarea(AltaTareaViewModel altaTareaViewModel) {
             IdTablero = altaTareaViewModel.IdTablero;
             Nombre = altaTareaViewModel.Nombre;
@@ -37,7 +36,6 @@ namespace tl2_tp10_2023_franciscojvicente.Models
             Id_usuario_asignado = updateTareaViewModel.Id_usuario_asignado;
         }
         public Tarea() {
-
         }
     }
 }

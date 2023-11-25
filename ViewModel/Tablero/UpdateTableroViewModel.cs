@@ -6,7 +6,6 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
     public class UpdateTableroViewModel
     {
         private List<Usuario>? usuarios;
-        // private Tablero? tablero;
         private int id;
         private int id_usuario_propietario;
         private string? nombre;
@@ -25,8 +24,6 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
         [Display(Name = "Descripción")] 
         public string? Descripcion { get => descripcion; set => descripcion = value; }
 
-        // public Tablero? Tablero { get => tablero; set => tablero = value; }
-
         public UpdateTableroViewModel(Tablero tablero)
         {
             Usuarios = new List<Usuario>();
@@ -39,14 +36,5 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
         public UpdateTableroViewModel() {
             
         }
-        // public UpdateTableroViewModel(Tablero tablero)
-        // {
-        //     Usuarios = new List<Usuario>();
-        //     Id = tablero.Id;
-        //     Id_usuario_propietario = tablero.Id_usuario_propietario;
-        //     Nombre = tablero.Nombre;
-        //     Descripcion = tablero.Descripcion;
-        // }
-
     }
 }

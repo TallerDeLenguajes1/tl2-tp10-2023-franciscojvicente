@@ -5,9 +5,6 @@ using System.ComponentModel.DataAnnotations;
 namespace tl2_tp10_2023_franciscojvicente.ViewModel {
     public class UsuarioTableroViewModel
     {
-        private List<Usuario>? usuarios;
-        private Tablero? tablero;
-
         public List<Usuario>? Usuarios { get; set; }
 
         [Required]        

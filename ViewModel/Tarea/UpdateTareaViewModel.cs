@@ -6,7 +6,6 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
         {
             private List<Usuario>? usuarios;
             private List<Tablero>? tableros;
-            // private Tarea? tarea;
             private int id;
             private int idTablero;
             private string? nombre;
@@ -41,8 +40,6 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
             public List<Tablero>? Tableros { get => tableros; set => tableros = value; }
             public int Id { get => id; set => id = value; }
 
-        // public Tarea? Tarea { get => tarea; set => tarea = value; }
-
             public UpdateTareaViewModel(Tarea tarea)
             {
                 Usuarios = new List<Usuario>();
@@ -57,7 +54,6 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
             }
             
             public UpdateTareaViewModel() {
-                
             }
 
         }
