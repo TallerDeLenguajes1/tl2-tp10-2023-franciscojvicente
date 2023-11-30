@@ -4,12 +4,10 @@ using tl2_tp10_2023_franciscojvicente.Models;
 namespace tl2_tp10_2023_franciscojvicente.ViewModel {
     public class GetUsuariosViewModel
     {
-        
-        private List<Usuario>? usuarios;
-        public List<Usuario>? Usuarios { get => usuarios; set => usuarios = value; }
+        public List<Usuario>? Usuarios { get; set; }
 
         public GetUsuariosViewModel(List<Usuario> usuarios) {
-            this.usuarios = usuarios;
+            Usuarios = usuarios;
         }
         public GetUsuariosViewModel() {
         }

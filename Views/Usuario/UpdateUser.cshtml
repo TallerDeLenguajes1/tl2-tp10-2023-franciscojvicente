@@ -13,15 +13,27 @@
         <span asp-validation-for="@Model.Contrasenia" class="text-danger"></span>   
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Rol" class="form-label"></label>
-        <select class="form-select w-50" asp-for="@Model.Rol">
-            <option selected>Seleccione uno</option>
-        @foreach (var rol in Enum.GetValues(typeof(Roles)))
-        {
-            <option value="@rol">@rol</option>
+        @if (@Model.Id == @Model.IdLogueado) {
+            @* <select class="form-select w-50" asp-for="@Model.Rol" disabled>
+            <option selected >Seleccione uno</option>
+            @foreach (var rol in Enum.GetValues(typeof(Roles)))
+            {
+                <option value="@rol">@rol</option>
+            }
+            </select>
+            <span asp-validation-for="@Model.Rol" class="text-danger"></span> *@
+
+        } else {      
+            <label asp-for="@Model.Rol" class="form-label"></label>  
+            <select class="form-select w-50" asp-for="@Model.Rol">
+            <option selected >Seleccione uno</option>
+            @foreach (var rol in Enum.GetValues(typeof(Roles)))
+            {
+                <option value="@rol">@rol</option>
+            }
+            </select>
+            <span asp-validation-for="@Model.Rol" class="text-danger"></span>
         }
-        </select>
-        <span asp-validation-for="@Model.Rol" class="text-danger"></span>
     </div>
     <button class="btn btn-primary mt-2" type="submit">Enviar</button>
 </form>

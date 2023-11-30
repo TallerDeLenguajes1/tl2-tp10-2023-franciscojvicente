@@ -4,25 +4,22 @@ using tl2_tp10_2023_franciscojvicente.Models;
 namespace tl2_tp10_2023_franciscojvicente.ViewModel {
     public class UpdateUserViewModel
     {
-        private int id;
-        private string? nombreDeUsuario;
-        private Roles? rol;
-        private string? contrasenia;
-
-        
+ 
         [Required(ErrorMessage = "Este campo es requerido.")]
         [Display(Name = "Nombre de usuario")] 
-        public string? NombreDeUsuario { get => nombreDeUsuario; set => nombreDeUsuario = value; }
+        public string? NombreDeUsuario { get; set; }
 
         
         [Required(ErrorMessage = "Este campo es requerido.")]
         [Display(Name = "Rol")] 
-        public Roles? Rol { get => rol; set => rol = value; }
+        public Roles? Rol { get; set; }
 
         [Required(ErrorMessage = "Este campo es requerido.")]
         [Display(Name = "Contraseña")] 
-        public string? Contrasenia { get => contrasenia; set => contrasenia = value; }
-        public int Id { get => id; set => id = value; }
+        public string? Contrasenia { get; set; }
+        public int Id { get; set; }
+
+        public int IdLogueado { get; set; }
 
         public UpdateUserViewModel(Usuario usuario) {
             Id = usuario.Id;

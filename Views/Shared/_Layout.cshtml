@@ -23,9 +23,6 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="CreateUser">Crear Usuario</a>
                         </li>
                         <li class="nav-item">
@@ -44,6 +41,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Tarea" asp-action="CreateTarea">Crear Tarea</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">Logout</a>
                         </li>
                     </ul>
@@ -51,8 +51,8 @@
             </div>
         </nav>
     </header>
-    <div class="container w-100">
-        <main role="main" class="pb-3">
+    <div class="container">
+        <main role="main" class="pb-3 w-100">
             @RenderBody()
         </main>
     </div>
