@@ -12,18 +12,28 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly ILogger<HomeController> _logger;
 
-        public UsuarioController(IUsuarioRepository usuarioRepository) {
+        public UsuarioController(IUsuarioRepository usuarioRepository, ILogger<HomeController> logger) {
             _usuarioRepository = usuarioRepository;
+            _logger = logger;
         }
 
         public IActionResult Index()
         {
             if(!IsLogged()) return RedirectToRoute(new { controller = "Home", action = "Index" });
             if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
-            var usuarios = _usuarioRepository.GetAll();
-            var getUsuariosViewModel = new GetUsuariosViewModel(usuarios);
-            return View(getUsuariosViewModel);
+            try
+            {
+                var usuarios = _usuarioRepository.GetAll();
+                var getUsuariosViewModel = new GetUsuariosViewModel(usuarios);
+                return View(getUsuariosViewModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return RedirectToRoute(new {controller = "Home", action = "Error"});
+            }
         }
 
         [HttpGet]
@@ -48,8 +58,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
         {
             if(!IsLogged()) return RedirectToAction("Login/Index");
             if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
-            var usuarios = _usuarioRepository.GetAll();
-            var usuarioBuscado = usuarios.FirstOrDefault(usuario => usuario.Id == idUser);
+            var usuarioBuscado = _usuarioRepository.GetById(idUser);
             if (usuarioBuscado == null) return NoContent();
             var usuarioModificar = new UpdateUserViewModel(usuarioBuscado);
             usuarioModificar.IdLogueado = (int)HttpContext.Session.GetInt32("Id");

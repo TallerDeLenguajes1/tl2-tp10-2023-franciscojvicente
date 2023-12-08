@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace tl2_tp10_2023_franciscojvicente.ViewModel {
     public class UpdateTableroViewModel
     {
-        public List<Usuario>? Usuarios { get; set; }
+        public List<UsuarioIDViewModel>? Usuarios { get; set; }
         public int Id { get; set; }
         
         [Display(Name = "Id del usuario propietario")] 
@@ -20,7 +20,7 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
 
         public UpdateTableroViewModel(Tablero tablero)
         {
-            Usuarios = new List<Usuario>();
+            Usuarios = new List<UsuarioIDViewModel>();
             Id = tablero.Id;
             Id_usuario_propietario = tablero.Id_usuario_propietario;
             Nombre = tablero.Nombre;

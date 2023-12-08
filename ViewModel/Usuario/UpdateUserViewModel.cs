@@ -22,6 +22,7 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
         public int IdLogueado { get; set; }
 
         public UpdateUserViewModel(Usuario usuario) {
+            if (usuario.Id == 0 || usuario.NombreDeUsuario == null || usuario.Rol == null || usuario.Contrasenia == null) new Usuario();
             Id = usuario.Id;
             NombreDeUsuario = usuario.NombreDeUsuario;
             Rol = usuario.Rol;

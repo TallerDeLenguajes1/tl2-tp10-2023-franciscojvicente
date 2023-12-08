@@ -44,7 +44,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             if(!IsLogged()) return RedirectToAction("Login/Index");
             if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
             AltaTableroViewModel altaTableroViewModel = new();
-            altaTableroViewModel.Usuarios = _usuarioRepository.GetAll();
+            altaTableroViewModel.Usuarios = _usuarioRepository.GetAllID();
             if (altaTableroViewModel.Usuarios == null) return NoContent();
             return View(altaTableroViewModel);
         }
@@ -72,7 +72,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 var tablero = tableros.FirstOrDefault(tablero => tablero.Id == idTablero);
                 if (tablero == null) return NoContent();
                 UpdateTableroViewModel updateTableroViewModel = new(tablero);
-                updateTableroViewModel.Usuarios = _usuarioRepository.GetAll();
+                updateTableroViewModel.Usuarios = _usuarioRepository.GetAllID();
                 return View(updateTableroViewModel);    
             } else {
                 var idUser = HttpContext.Session.GetInt32("Id");
@@ -82,7 +82,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 var tablero = tableros.FirstOrDefault(tablero => tablero.Id == idTablero);
                 if (tablero == null) return NoContent();
                 UpdateTableroViewModel updateTableroViewModel = new(tablero);
-                updateTableroViewModel.Usuarios = _usuarioRepository.GetAll();
+                updateTableroViewModel.Usuarios = _usuarioRepository.GetAllID();
                 return View(updateTableroViewModel);    
             }
         }

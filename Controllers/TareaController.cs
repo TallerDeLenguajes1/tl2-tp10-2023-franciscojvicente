@@ -47,8 +47,8 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             if(!IsLogged()) return RedirectToAction("Login/Index");
             if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
             AltaTareaViewModel altaTareaViewModel = new();
-            altaTareaViewModel.Usuarios = _usuarioRepository.GetAll();
-            altaTareaViewModel.Tableros = _tableroRepository.GetAll();
+            altaTareaViewModel.Usuarios = _usuarioRepository.GetAllID();
+            altaTareaViewModel.Tableros = _tableroRepository.GetAllID();
             return View(altaTareaViewModel);
         }
 
@@ -74,8 +74,8 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 var tarea = tareas.FirstOrDefault(tarea => tarea.Id == idTarea);
                 if (tarea == null) return NoContent();
                 UpdateTareaViewModel updateTareaViewModel = new(tarea);
-                updateTareaViewModel.Usuarios = _usuarioRepository.GetAll();
-                updateTareaViewModel.Tableros = _tableroRepository.GetAll();
+                updateTareaViewModel.Usuarios = _usuarioRepository.GetAllID();
+                updateTareaViewModel.Tableros = _tableroRepository.GetAllID();
                 return View(updateTareaViewModel);
             } else {
                 var idUser = HttpContext.Session.GetInt32("Id");
@@ -84,8 +84,8 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 var tarea = tareas.FirstOrDefault(tarea => tarea.Id == idTarea);
                 if (tarea == null) return NoContent();
                 UpdateTareaViewModel updateTareaViewModel = new(tarea);
-                updateTareaViewModel.Usuarios = _usuarioRepository.GetAll();
-                updateTareaViewModel.Tableros = _tableroRepository.GetAll();
+                updateTareaViewModel.Usuarios = _usuarioRepository.GetAllID();
+                updateTareaViewModel.Tableros = _tableroRepository.GetAllID();
                 return View(updateTareaViewModel);
             }
         }

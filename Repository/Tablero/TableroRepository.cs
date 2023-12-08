@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Data.SqlClient;
 using tl2_tp10_2023_franciscojvicente.Models;
+using tl2_tp10_2023_franciscojvicente.ViewModel;
 
 namespace tl2_tp10_2023_franciscojvicente.Repository  {
     public class TableroRepository : ITableroRepository
@@ -53,6 +54,31 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
                             Id_usuario_propietario = Convert.ToInt32(reader["id_usuario_propietario"]),
                             Nombre = reader["nombre"].ToString(),
                             Descripcion = reader["descripcion"].ToString()
+                        };
+                        tableros.Add(tablero);
+                    }
+                }
+                connection.Close();
+            }
+            return tableros;
+        }
+
+        public List<TableroIDViewModel> GetAllID()
+        {
+            var queryString = @"SELECT id FROM tablero;";
+            List<TableroIDViewModel> tableros = new();
+            using (SQLiteConnection connection = new(cadenaConexion))
+            {
+                SQLiteCommand command = new(queryString, connection);
+                connection.Open();
+            
+                using(SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var tablero = new TableroIDViewModel
+                        {
+                            Id = Convert.ToInt32(reader["id"])
                         };
                         tableros.Add(tablero);
                     }

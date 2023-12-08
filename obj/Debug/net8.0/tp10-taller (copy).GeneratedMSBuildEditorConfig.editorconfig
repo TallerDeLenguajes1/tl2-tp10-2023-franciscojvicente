@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = c:\Users\franv\tp10-taller\tl2-tp10-2023-franciscojvicente
 build_property._RazorSourceGeneratorDebug = 
 
+[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Home/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
