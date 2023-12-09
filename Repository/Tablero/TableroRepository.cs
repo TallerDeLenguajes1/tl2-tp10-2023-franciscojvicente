@@ -11,6 +11,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
     public class TableroRepository : ITableroRepository
     {
         private string cadenaConexion = "Data Source=DB/kanban.db;Cache=Shared";
+        // private readonly 
         public void Create(Tablero tablero)
         {
             var query = $"insert into Tablero (id_usuario_propietario, nombre, descripcion) values (@id_usuario_propietario, @nombre, @descripcion);";
@@ -20,7 +21,8 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
             command.Parameters.Add(new SQLiteParameter("@id_usuario_propietario", tablero.Id_usuario_propietario));
             command.Parameters.Add(new SQLiteParameter("@nombre", tablero.Nombre));
             command.Parameters.Add(new SQLiteParameter("@descripcion", tablero.Descripcion));
-            command.ExecuteNonQuery();
+            var affectedRow = command.ExecuteNonQuery();
+            if (affectedRow == 0) throw new Exception("Se produjo un error al crear el tablero");
             connection.Close();
         }
 
@@ -31,7 +33,8 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
             command.CommandText = $"delete from Tablero where id = @id;";
             command.Parameters.Add(new SQLiteParameter("@id", idTablero));
             connection.Open();
-            command.ExecuteNonQuery();
+            var affectedRow = command.ExecuteNonQuery();
+            if (affectedRow == 0) throw new Exception("Se produjo un error al eliminar el tablero"); 
             connection.Close();
         }
 
@@ -60,6 +63,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
                 }
                 connection.Close();
             }
+            if (tableros == null) throw new Exception ($"No se encontraron tableros en la base de datos");
             return tableros;
         }
 
@@ -85,6 +89,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
                 }
                 connection.Close();
             }
+            if (tableros == null) throw new Exception ($"No se encontraron tableros en la base de datos");
             return tableros;
         }
 
@@ -109,6 +114,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
                 }
             }
             connection.Close();
+            if (tableros == null) throw new Exception ($"No se encontraron tableros asignados al usuario {idUser} en la base de datos");
             return tableros;
         }
 
@@ -130,6 +136,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
                 }
             }
             connection.Close();
+            if (tablero == null) throw new Exception ($"No se encontró dicho tablero en la base de datos");        
             return tablero;
         }
 
@@ -143,7 +150,8 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
             command.Parameters.Add(new SQLiteParameter("@nombre", tablero.Nombre));
             command.Parameters.Add(new SQLiteParameter("@descripcion", tablero.Descripcion));
             connection.Open();
-            command.ExecuteNonQuery();
+            var affectedRow = command.ExecuteNonQuery();
+            if (affectedRow == 0) throw new Exception("Se produjo un error al actualizar el tablero");
             connection.Close(); 
         }
     }
