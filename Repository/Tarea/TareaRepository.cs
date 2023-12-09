@@ -11,18 +11,6 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
     public class TareaRepository : ITareaRepository
     {
         private string cadenaConexion = "Data Source=DB/kanban.db;Cache=Shared";
-        public void AddUserToTarea(int idUser, int idTarea)
-        {
-            SQLiteConnection connection = new(cadenaConexion);
-            SQLiteCommand command = connection.CreateCommand();
-            command.CommandText = $"update Tarea set id_usuario_asignado = @idUser where id = @idTarea;";
-            command.Parameters.Add(new SQLiteParameter("@idUser", idUser));
-            command.Parameters.Add(new SQLiteParameter("@idTarea", idTarea));
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
-        }
-
         public void Create(Tarea tarea)
         {
             var query = $"insert into Tarea (id_tablero, nombre, estado, descripcion, color, id_usuario_asignado) values (@id_tablero, @nombre, @estado, @descripcion, @color, @id_usuario_asignado);";
@@ -31,11 +19,12 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             var command = new SQLiteCommand(query, connection);
             command.Parameters.Add(new SQLiteParameter("@id_tablero", tarea.IdTablero));
             command.Parameters.Add(new SQLiteParameter("@nombre", tarea.Nombre));
-            command.Parameters.Add(new SQLiteParameter("@estado", (int)tarea.EstadoTarea)); // ToDo: Castear hasta que llegue correctamente
+            command.Parameters.Add(new SQLiteParameter("@estado", (int)tarea.EstadoTarea));
             command.Parameters.Add(new SQLiteParameter("@descripcion", tarea.Descripcion));
             command.Parameters.Add(new SQLiteParameter("@color", tarea.Color));
             command.Parameters.Add(new SQLiteParameter("@id_usuario_asignado", tarea.Id_usuario_asignado));
-            command.ExecuteNonQuery();
+            var affectedRow = command.ExecuteNonQuery();
+            if (affectedRow == 0) throw new Exception("Se produjo un error al crear la tarea");
             connection.Close();
         }
 
@@ -46,7 +35,8 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             command.CommandText = $"delete from Tarea where id = @id;";
             command.Parameters.Add(new SQLiteParameter("@id", idTarea));
             connection.Open();
-            command.ExecuteNonQuery();
+            var affectedRow = command.ExecuteNonQuery();
+            if (affectedRow == 0) throw new Exception("Se produjo un error al eliminar la tarea");
             connection.Close();
         }
 
@@ -74,6 +64,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                 }
             }
             connection.Close();
+            if (tareas == null) throw new Exception ($"No se encontraron tareas en la base de datos");
             return tareas;
         }
 
@@ -101,6 +92,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                 }
             }
             connection.Close();
+            if (tareas == null) throw new Exception ($"No se encontraron tareas asignadas al usuario {idUser} en la base de datos");
             return tareas;
         }
 
@@ -125,12 +117,12 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                 }
             }
             connection.Close();
+            if (tarea == null) throw new Exception ($"No se encontró dicha tarea en la base de datos");
             return tarea;
         }
 
         public void Update(Tarea tarea, int idTarea)
         {
-            //if(Convert.ToInt32(tarea.EstadoTarea) > 4) return;
             SQLiteConnection connection = new(cadenaConexion);
             SQLiteCommand command = connection.CreateCommand();
             command.CommandText =$"update Tarea set id_tablero = @idTablero, nombre = @nombre, estado = @estado, descripcion = @descripcion, color = @color, id_usuario_asignado = @id_usuario_asignado where id = @idTarea;";
@@ -142,48 +134,8 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             command.Parameters.Add(new SQLiteParameter("@color", tarea.Color));
             command.Parameters.Add(new SQLiteParameter("@id_usuario_asignado", tarea.Id_usuario_asignado));
             connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();            
-        }
-        
-        public List<Tarea>? GetTareasPorEstado(int estado)
-        {
-            if(estado > 4) return null;
-            SQLiteConnection connection = new(cadenaConexion);
-            List<Tarea> tareas = new();
-            SQLiteCommand command = connection.CreateCommand();
-            command.CommandText = $"select * from tarea where estado = @estado;";
-            command.Parameters.Add(new SQLiteParameter("@estado", estado));
-            connection.Open();
-            using (SQLiteDataReader reader = command.ExecuteReader()) {
-                while (reader.Read()) {
-                    Tarea tarea = new()
-                    {
-                        Id = Convert.ToInt32(reader["id"]),
-                        IdTablero = Convert.ToInt32(reader["id_tablero"]),
-                        Nombre = reader["nombre"].ToString(),
-                        EstadoTarea = (tl2_tp10_2023_franciscojvicente.Models.EstadoTarea)(int.TryParse(reader["estado"].ToString(), out var i)? i: 0),
-                        Descripcion = reader["descripcion"].ToString(),
-                        Color = reader["color"].ToString(),
-                        Id_usuario_asignado = Convert.ToInt32(reader["id_usuario_asignado"])
-                    };
-                    tareas.Add(tarea);
-                }
-            }
-            connection.Close();
-            return tareas;
-        }
-
-        public void UpdateEstado(int idTarea, int estado)
-        {
-            if(estado > 4) return;
-            SQLiteConnection connection = new(cadenaConexion);
-            SQLiteCommand command = connection.CreateCommand();
-            command.CommandText = $"update tarea set estado = @estado where id = @idTarea;";
-            command.Parameters.Add(new SQLiteParameter("@estado", estado));
-            command.Parameters.Add(new SQLiteParameter("@idTarea", idTarea));
-            connection.Open();
-            command.ExecuteNonQuery();
+            var affectedRow = command.ExecuteNonQuery();
+            if (affectedRow == 0) throw new Exception("Se produjo un error al actualizar la tarea");
             connection.Close();            
         }
 
@@ -191,7 +143,6 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
         {
             var queryString = "SELECT * FROM Tarea;";
             List<Tarea> tareas = new List<Tarea>();
-
             using (SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
             {
                 connection.Open();
@@ -214,9 +165,8 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                     }
                 }
             }
-
+            if (tareas == null) throw new Exception ($"No se encontraron tareas en la base de datos");
             return tareas;
         }
-
     }
 }
