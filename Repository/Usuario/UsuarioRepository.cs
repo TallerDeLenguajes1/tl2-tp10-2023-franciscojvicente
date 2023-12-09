@@ -22,7 +22,8 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             command.Parameters.Add(new SQLiteParameter("@nombre_de_usuario", usuario.NombreDeUsuario));
             command.Parameters.Add(new SQLiteParameter("@rol", usuario.Rol));
             command.Parameters.Add(new SQLiteParameter("@contrasenia", usuario.Contrasenia));
-            command.ExecuteNonQuery();
+            var affectedRow = command.ExecuteNonQuery();
+            if (affectedRow == 0) throw new Exception("Se produjo un error al crear el usuario");
             connection.Close();
         }
 
@@ -33,7 +34,8 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             command.CommandText = $"delete from Usuario where id = @id;";
             command.Parameters.Add(new SQLiteParameter("@id", id));
             connection.Open();
-            command.ExecuteNonQuery();
+            var affectedRow = command.ExecuteNonQuery();
+            if (affectedRow == 0) throw new Exception("Se produjo un error al eliminar el usuario");
             connection.Close();
         }
 
@@ -116,7 +118,8 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             command.Parameters.Add(new SQLiteParameter("@rol", usuario.Rol));
             command.Parameters.Add(new SQLiteParameter("@contrasenia", usuario.Contrasenia));
             connection.Open();
-            command.ExecuteNonQuery();
+            var affectedRow = command.ExecuteNonQuery();
+            if (affectedRow == 0) throw new Exception("Se produjo un error al actualizar el usuario");
             connection.Close();
         }
 
