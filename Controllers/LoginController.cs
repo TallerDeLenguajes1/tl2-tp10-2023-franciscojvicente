@@ -22,15 +22,16 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
 
         public IActionResult Index()
         {
+            if(IsLogged()) return RedirectToRoute(new {controller = "Home", action = "Index"}); 
             return View(new LoginViewModel());
         }
 
         [HttpPost]
         public IActionResult Login(LoginViewModel loginViewModel)
         {
-            if(!ModelState.IsValid) return RedirectToAction("Index");
             try
             {
+                if(!ModelState.IsValid) return RedirectToAction("Index");
                 var usuarioLogeado = _usuarioRepository.Login(loginViewModel.NombreDeUsuario, loginViewModel.Contrasenia);
                 LoginUsuario(new LoginUsuarioViewModel(usuarioLogeado));
                 _logger.LogInformation($"Acceso correcto por parte del usuario {loginViewModel.NombreDeUsuario}");
@@ -73,6 +74,11 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             HttpContext.Session.Remove("NombreDeUsuario");
             HttpContext.Session.Remove("Rol");
             HttpContext.Session.Clear();
+        }
+        private bool IsLogged()
+        {
+            if (HttpContext.Session != null && HttpContext.Session.GetString("Id") != null && HttpContext.Session.GetString("NombreDeUsuario") != null && HttpContext.Session.GetString("Rol") != null) return true; 
+            return false;
         }
     }
 }
