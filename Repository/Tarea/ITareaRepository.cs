@@ -14,6 +14,5 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
         public void Create(Tarea tarea);
         public void Update(Tarea tarea, int idTarea);
         public void Delete(int idTarea);
-        public void AddUserToTarea(int idUser, int idTarea);
     }
 }

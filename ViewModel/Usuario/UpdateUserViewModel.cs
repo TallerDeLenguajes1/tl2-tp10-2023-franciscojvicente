@@ -5,16 +5,16 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
     public class UpdateUserViewModel
     {
  
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "El nombre de usuario es requerido.")]
         [Display(Name = "Nombre de usuario")] 
         public string? NombreDeUsuario { get; set; }
 
         
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "El rol es requerido.")]
         [Display(Name = "Rol")] 
         public Roles? Rol { get; set; }
 
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "La contraseña es requerida.")]
         [Display(Name = "Contraseña")] 
         public string? Contrasenia { get; set; }
         public int Id { get; set; }

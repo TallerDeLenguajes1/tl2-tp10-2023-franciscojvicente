@@ -6,6 +6,7 @@
     <div  class="form-group">
         <label asp-for="@Model.NombreDeUsuario" class="form-label"></label>
         <input class="form-control w-50" asp-for="@Model.NombreDeUsuario" maxlength="30" placeholder="Juan Pérez">
+        <span asp-validation-for="@Model.NombreDeUsuario" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="@Model.Contrasenia" class="form-label"></label>
