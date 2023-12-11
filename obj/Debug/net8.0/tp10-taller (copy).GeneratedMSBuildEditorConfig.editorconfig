@@ -18,6 +18,22 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = c:\Users\franv\tp10-taller\tl2-tp10-2023-franciscojvicente
 build_property._RazorSourceGeneratorDebug = 
 
+[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Board/CreateBoard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRcQ3JlYXRlQm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Board/GetTasksInBoard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRcR2V0VGFza3NJbkJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Board/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Board/UpdateBoard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRcVXBkYXRlQm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Home/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -46,40 +62,32 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Tablero/CreateTablero.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFibGVyb1xDcmVhdGVUYWJsZXJvLmNzaHRtbA==
+[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Task/CreateTask.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza1xDcmVhdGVUYXNrLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Tablero/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFibGVyb1xJbmRleC5jc2h0bWw=
+[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Task/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Tablero/UpdateTablero.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFibGVyb1xVcGRhdGVUYWJsZXJvLmNzaHRtbA==
+[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Task/UpdateStatusTask.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza1xVcGRhdGVTdGF0dXNUYXNrLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Tarea/CreateTarea.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFyZWFcQ3JlYXRlVGFyZWEuY3NodG1s
+[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Task/UpdateTask.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza1xVcGRhdGVUYXNrLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Tarea/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFyZWFcSW5kZXguY3NodG1s
+[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/User/CreateUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxDcmVhdGVVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Tarea/UpdateTarea.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFyZWFcVXBkYXRlVGFyZWEuY3NodG1s
+[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Usuario/CreateUser.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xDcmVhdGVVc2VyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Usuario/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Usuario/UpdateUser.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xVcGRhdGVVc2VyLmNzaHRtbA==
+[c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/User/UpdateUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxVcGRhdGVVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [c:/Users/franv/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/_ViewImports.cshtml]

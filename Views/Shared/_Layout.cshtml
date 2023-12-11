@@ -36,24 +36,24 @@
                         @if(!string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(nombreDeUsuario) && !string.IsNullOrEmpty(rol)) {   
                             @if(rol == "Administrador") {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="CreateUser">Crear Usuario</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="CreateUser">Crear Usuario</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Ver Usuarios</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Ver Usuarios</a>
                                 </li>
                             }
                             @if(rol == "Operador" || rol == "Administrador") {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Tablero" asp-action="CreateTablero">Crear Tablero</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Board" asp-action="CreateBoard">Crear Tablero</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Tablero" asp-action="Index">Ver Tableros</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Board" asp-action="Index">Ver Tableros</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Tarea" asp-action="CreateTarea">Crear Tarea</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="CreateTask">Crear Tarea</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Tarea" asp-action="Index">Ver Tareas</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="Index">Ver Tareas</a>
                                 </li>
                             }
                             <li class="nav-item">

@@ -1,0 +1,53 @@
+@model GetTablerosViewModel
+@{
+    var id = Context.Session.GetInt32("Id");
+    var nombreDeUsuario = Context.Session.GetString("NombreDeUsuario");
+    var rol = Context.Session.GetString("Rol");
+}
+
+<div class="text-center">
+    <h1 class="text-primary">Tableros</h1>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Id Usuario Propietario</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tablero in Model.Tableros) {
+            <tr>
+                <th scope="row">@tablero.Id</th>
+                <th scope="row">@tablero.Id_usuario_propietario</th>
+                <th scope="row">@tablero.Nombre</th>
+                <th scope="row">@tablero.Descripcion</th>
+                @if (tablero.Id_usuario_propietario == id || rol == "Administrador") {
+                    <td>
+                    <a class="text-decoration-none me-1 btn btn-primary" asp-controller="Board" asp-action="GetTasksInBoard" asp-route-idBoard="@tablero.Id" asp-route-idOwnerBoard="@tablero.Id_usuario_propietario">Ver Tareas</a>
+                    </td>
+                    <td>
+                    <a class="text-decoration-none me-1 btn btn-primary" asp-controller="Board" asp-action="UpdateBoard" asp-route-idTablero="@tablero.Id">Editar</a>
+                    </td>
+                    <td>
+                    <a class="text-decoration-none ms-1 btn btn-primary" asp-controller="Board" asp-action="DeleteBoard" asp-route-idTablero="@tablero.Id" onclick="return confirm('¿Estas seguro que quieres eliminar el tablero?')">Eliminar</a>
+                    </td>
+                } else {
+                    <td>
+                        <a class="text-decoration-none me-1 btn btn-primary" asp-controller="Board" asp-action="GetTasksInBoard" asp-route-idBoard="@tablero.Id" asp-route-idOwnerBoard="@tablero.Id_usuario_propietario">Ver Tareas</a>
+                    </td>
+                    <td>
+                        No puedes editar o eliminar este tablero ya que no eres el propietario.
+                    </td>
+                    <td></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

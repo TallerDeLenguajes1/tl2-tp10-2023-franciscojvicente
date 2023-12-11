@@ -1,6 +1,6 @@
 namespace tl2_tp10_2023_franciscojvicente.Models
 {
-    public enum EstadoTarea
+    public enum StatusTask
     {
         Desconocido = 0,
         Ideas = 1,

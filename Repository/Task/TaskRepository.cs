@@ -8,7 +8,7 @@ using tl2_tp10_2023_franciscojvicente.Models;
 
 namespace tl2_tp10_2023_franciscojvicente.Repository 
 {
-    public class TareaRepository : ITareaRepository
+    public class TaskRepository : ITaskRepository
     {
         private string cadenaConexion = "Data Source=DB/kanban.db;Cache=Shared";
         public void Create(Tarea tarea)
@@ -40,6 +40,30 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             connection.Close();
         }
 
+        public void DeleteByBoard(int idTablero)
+        {
+            SQLiteConnection connection = new(cadenaConexion);
+            SQLiteCommand command = connection.CreateCommand();
+            command.CommandText = $"delete from Tarea where id_tablero = @id;";
+            command.Parameters.Add(new SQLiteParameter("@id", idTablero));
+            connection.Open();
+            var affectedRow = command.ExecuteNonQuery();
+            if (affectedRow == 0) throw new Exception($"Se produjo un error al eliminar las tareas del tablero {idTablero}");
+            connection.Close();
+        }
+
+        public void DeleteByUser(int idUser)
+        {
+            SQLiteConnection connection = new(cadenaConexion);
+            SQLiteCommand command = connection.CreateCommand();
+            command.CommandText = $"delete from Tarea where id_usuario_asignado = @id;";
+            command.Parameters.Add(new SQLiteParameter("@id", idUser));
+            connection.Open();
+            var affectedRow = command.ExecuteNonQuery();
+            if (affectedRow == 0) throw new Exception($"Se produjo un error al eliminar las tareas del usuario {idUser}");
+            connection.Close();
+        }
+
         public List<Tarea> GetAllTareasByTablero(int idTablero)
         {
             SQLiteConnection connection = new(cadenaConexion);
@@ -55,7 +79,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                         Id = Convert.ToInt32(reader["id"]),
                         IdTablero = Convert.ToInt32(reader["id_tablero"]),
                         Nombre = reader["nombre"].ToString(),
-                        EstadoTarea = (tl2_tp10_2023_franciscojvicente.Models.EstadoTarea)(int.TryParse(reader["estado"].ToString(), out var i)? i: 0),
+                        EstadoTarea = (tl2_tp10_2023_franciscojvicente.Models.StatusTask)(int.TryParse(reader["estado"].ToString(), out var i)? i: 0),
                         Descripcion = reader["descripcion"].ToString(),
                         Color = reader["color"].ToString(),
                         Id_usuario_asignado = Convert.ToInt32(reader["id_usuario_asignado"])
@@ -83,7 +107,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                         Id = Convert.ToInt32(reader["id"]),
                         IdTablero = Convert.ToInt32(reader["id_tablero"]),
                         Nombre = reader["nombre"].ToString(),
-                        EstadoTarea = (tl2_tp10_2023_franciscojvicente.Models.EstadoTarea)(int.TryParse(reader["estado"].ToString(), out var i)? i: 0),
+                        EstadoTarea = (tl2_tp10_2023_franciscojvicente.Models.StatusTask)(int.TryParse(reader["estado"].ToString(), out var i)? i: 0),
                         Descripcion = reader["descripcion"].ToString(),
                         Color = reader["color"].ToString(),
                         Id_usuario_asignado = Convert.ToInt32(reader["id_usuario_asignado"])
@@ -110,7 +134,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                     tarea.Id = Convert.ToInt32(reader["id"]);
                     tarea.IdTablero = Convert.ToInt32(reader["id_tablero"]);
                     tarea.Nombre = reader["nombre"].ToString();
-                    tarea.EstadoTarea = (tl2_tp10_2023_franciscojvicente.Models.EstadoTarea)(int.TryParse(reader["estado"].ToString(), out var i)? i: 0);
+                    tarea.EstadoTarea = (tl2_tp10_2023_franciscojvicente.Models.StatusTask)(int.TryParse(reader["estado"].ToString(), out var i)? i: 0);
                     tarea.Descripcion = reader["descripcion"].ToString();
                     tarea.Color = reader["color"].ToString();
                     tarea.Id_usuario_asignado = Convert.ToInt32(reader["id_usuario_asignado"]);
@@ -139,6 +163,19 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             connection.Close();            
         }
 
+        public void UpdateStatus(int idTask, int status)
+        {
+            SQLiteConnection connection = new(cadenaConexion);
+            SQLiteCommand command = connection.CreateCommand();
+            command.CommandText = $"update tarea set estado = @estado where id = @idTarea;";
+            command.Parameters.Add(new SQLiteParameter("@estado", status));
+            command.Parameters.Add(new SQLiteParameter("@idTarea", idTask));
+            connection.Open();
+            var affectedRow = command.ExecuteNonQuery();
+            if (affectedRow == 0) throw new Exception("Se produjo un error al actualizar la tarea");
+            connection.Close();  
+        }
+
         public List<Tarea> GetAll()
         {
             var queryString = "SELECT * FROM Tarea;";
@@ -156,7 +193,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                             tarea.Id = Convert.ToInt32(reader["id"]);
                             tarea.IdTablero = Convert.ToInt32(reader["id_tablero"]);
                             tarea.Nombre = reader["nombre"].ToString();
-                            tarea.EstadoTarea = (tl2_tp10_2023_franciscojvicente.Models.EstadoTarea)(int.TryParse(reader["estado"].ToString(), out var i) ? i : 0);
+                            tarea.EstadoTarea = (tl2_tp10_2023_franciscojvicente.Models.StatusTask)(int.TryParse(reader["estado"].ToString(), out var i) ? i : 0);
                             tarea.Descripcion = reader["descripcion"].ToString();
                             tarea.Color = reader["color"].ToString();
                             tarea.Id_usuario_asignado = Convert.ToInt32(reader["id_usuario_asignado"]);

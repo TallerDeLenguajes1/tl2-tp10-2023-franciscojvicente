@@ -1,17 +1,8 @@
 @model AltaTableroViewModel
 
-<h1 class="text-center">Crear Tablero</h1>
-<form asp-controller="Tablero" asp-action="CreateTablero">
-    <div class="mb-3">
-        <label class="form-label" asp-for="@Model.Id_usuario_propietario"></label>
-        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.Id_usuario_propietario">
-            <option selected>Seleccione uno</option>
-            @foreach (var usuario in Model.Usuarios)
-            {
-                <option>@usuario.Id</option>
-            }
-        </select>
-    </div>
+<h1 class="text-center text-primary">Crear Tablero</h1>
+<form asp-controller="Board" asp-action="CreateBoard">
+    <input hidden asp-for="@Model.Id_usuario_propietario">
     <div class="mb-3">
         <label class="form-label" asp-for="@Model.Nombre"></label>
         <input class="form-control w-50" asp-for="@Model.Nombre">

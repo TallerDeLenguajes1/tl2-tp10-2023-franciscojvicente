@@ -7,15 +7,17 @@ using tl2_tp10_2023_franciscojvicente.Repository;
 namespace tl2_tp10_2023_franciscojvicente.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    public class TableroController : Controller
+    public class BoardController : Controller
     {
-        private readonly ITableroRepository _tableroRepository;
-        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IBoardRepository _boardRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly ITaskRepository _taskRepository;
         private readonly ILogger<HomeController> _logger;
 
-        public TableroController(ITableroRepository tableroRepository, IUsuarioRepository usuarioRepository, ILogger<HomeController> logger) {
-                _tableroRepository = tableroRepository;
-                _usuarioRepository = usuarioRepository;
+        public BoardController(IBoardRepository boardRepository, IUserRepository userRepository, ITaskRepository taskRepository, ILogger<HomeController> logger) {
+                _boardRepository = boardRepository;
+                _userRepository = userRepository;
+                _taskRepository = taskRepository;
                 _logger = logger;
         }
         
@@ -28,13 +30,13 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 {
                     var idUser = HttpContext.Session.GetInt32("Id");
                     if(idUser == null) return NoContent();
-                    var tableros = _tableroRepository.GetAllByUser((int)idUser);
+                    var tableros = _boardRepository.GetAllOwnAndAssigned((int)idUser);
                     var getTablerosViewModel = new GetTablerosViewModel(tableros);
                     return View(getTablerosViewModel);
                 }
                 if (IsAdmin())
                 {
-                    var tableros = _tableroRepository.GetAll();
+                    var tableros = _boardRepository.GetAll();
                     var getTablerosViewModel = new GetTablerosViewModel(tableros);
                     return View(getTablerosViewModel);
                 }
@@ -43,31 +45,54 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
+                TempData["ErrorMessage"] = ex.Message;
+                TempData["StackTrace"] = ex.StackTrace;
                 return RedirectToRoute(new {controller = "Home", action = "Index"});
             }
         }
 
+        public IActionResult GetTasksInBoard(int idBoard, int idOwnerBoard)
+        {
+            try
+            {
+                if (!IsLogged()) return RedirectToRoute(new {controller = "Login", action = "Index"});
+                var tasks = _taskRepository.GetAllTareasByTablero(idBoard);
+                var getTasks = new GetTasksInBoardViewModel(tasks);
+                getTasks.IdOwnerBoard = idOwnerBoard;
+                return View(getTasks);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                TempData["ErrorMessage"] = ex.Message;
+                TempData["StackTrace"] = ex.StackTrace;
+                return RedirectToRoute(new {controller = "Home", action = "Error"});
+            }
+        }
+
         [HttpGet]
-        public IActionResult CreateTablero()
+        public IActionResult CreateBoard()
         {
             try
             {
                 if(!IsLogged()) return RedirectToRoute(new {controller = "Home", action = "Index"});
                 // if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 AltaTableroViewModel altaTableroViewModel = new();
-                altaTableroViewModel.Usuarios = _usuarioRepository.GetAllID();
-                if (altaTableroViewModel.Usuarios == null) return NoContent();
+                // altaTableroViewModel.Usuarios = _userRepository.GetAllID();
+                // if (altaTableroViewModel.Usuarios == null) return NoContent();
                 return View(altaTableroViewModel);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
-                return RedirectToRoute(new {controller = "Home", action = "Index"});
+                TempData["ErrorMessage"] = ex.Message;
+                TempData["StackTrace"] = ex.StackTrace;
+                return RedirectToRoute(new {controller = "Home", action = "Error"});
             }
         }
 
         [HttpPost]
-        public IActionResult? CreateTablero(AltaTableroViewModel altaTableroViewModel)
+        public IActionResult? CreateBoard(AltaTableroViewModel altaTableroViewModel)
         {
             try
             {    
@@ -76,65 +101,79 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 // if(!ModelState.IsValid) return RedirectToAction("Index");
                 var tablero = new Tablero(altaTableroViewModel);
                 if (tablero == null) return null;
-                _tableroRepository.Create(tablero);
+                tablero.Id_usuario_propietario = (int)HttpContext.Session.GetInt32("Id");
+                _boardRepository.Create(tablero);
+                _logger.LogInformation($"Tablero {tablero.Nombre} creado correctamente");
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
-                return RedirectToRoute(new {controller = "Home", action = "Index"});
+                TempData["ErrorMessage"] = ex.Message;
+                TempData["StackTrace"] = ex.StackTrace;
+                return RedirectToRoute(new {controller = "Home", action = "Error"});
             }
         }
 
         [HttpGet]
-        public IActionResult UpdateTablero(int idTablero)
+        public IActionResult UpdateBoard(int idTablero)
         {
             try
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
-                var tablero = _tableroRepository.GetById(idTablero);
+                var tablero = _boardRepository.GetById(idTablero);
                 if (tablero == null) return NoContent();
                 UpdateTableroViewModel updateTableroViewModel = new(tablero);
-                updateTableroViewModel.Usuarios = _usuarioRepository.GetAllID();
+                // updateTableroViewModel.Usuarios = _userRepository.GetAllID();
                 return View(updateTableroViewModel);    
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
-                return RedirectToRoute(new {controller = "Home", action = "Index"});
+                TempData["ErrorMessage"] = ex.Message;
+                TempData["StackTrace"] = ex.StackTrace;
+                return RedirectToRoute(new {controller = "Home", action = "Error"});
             }
         }
 
         [HttpPost]
-        public IActionResult? UpdateTablero(UpdateTableroViewModel updateTableroViewModel)
+        public IActionResult? UpdateBoard(UpdateTableroViewModel updateTableroViewModel)
         {
             try
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 // if(!ModelState.IsValid) return RedirectToAction("Index");
                 var tablero = new Tablero(updateTableroViewModel);
-                _tableroRepository.Update(tablero, tablero.Id);
+                _boardRepository.Update(tablero, tablero.Id);
+                _logger.LogInformation($"Tablero {tablero.Nombre} modificado correctamente");
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
-                return RedirectToRoute(new {controller = "Home", action = "Index"});              
+                TempData["ErrorMessage"] = ex.Message;
+                TempData["StackTrace"] = ex.StackTrace;
+                return RedirectToRoute(new {controller = "Home", action = "Error"});              
             }
         }
 
-        public IActionResult DeleteTablero(int idTablero)
+        public IActionResult DeleteBoard(int idTablero)
         {
             try
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
-                _tableroRepository.Delete(idTablero);
+                _taskRepository.DeleteByBoard(idTablero);
+                _logger.LogInformation($"Se eliminaron las tareas correspondientes al tablero {idTablero}");
+                _boardRepository.Delete(idTablero);
+                _logger.LogInformation($"Tablero {idTablero} eliminado correctamente");
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
-                return RedirectToRoute(new {controller = "Home", action = "Index"});  
+                TempData["ErrorMessage"] = ex.Message;
+                TempData["StackTrace"] = ex.StackTrace;
+                return RedirectToRoute(new {controller = "Home", action = "Error"});  
             }
         }
 

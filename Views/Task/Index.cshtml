@@ -8,7 +8,7 @@
     <thead>
         <tr>
             <th scope="col">Id</th>
-            <th scope="col">Id Tablero</th>}
+            <th scope="col">Id Tablero</th>
             <th scope="col">Nombre</th>
             <th scope="col">Estado</th>
             <th scope="col">Descripción</th>
@@ -28,8 +28,8 @@
                 <th scope="row">@tarea.Color</th>
                 <th scope="row">@tarea.Id_usuario_asignado</th>
                 <td>
-                    <a class="text-decoration-none me-1 btn btn-primary" asp-controller="Tarea" asp-action="UpdateTarea" asp-route-idTarea="@tarea.Id">Editar</a>
-                    <a class="text-decoration-none ms-1 btn btn-primary" asp-controller="Tarea" asp-action="DeleteTarea" asp-route-idTarea="@tarea.Id" onclick="return confirm('¿Estas seguro que quieres eliminar la tarea?')">Eliminar</a> 
+                    <a class="text-decoration-none me-1 btn btn-primary" asp-controller="Task" asp-action="UpdateTask" asp-route-idTarea="@tarea.Id">Editar</a>
+                    <a class="text-decoration-none ms-1 btn btn-primary" asp-controller="Task" asp-action="DeleteTask" asp-route-idTarea="@tarea.Id" onclick="return confirm('¿Estas seguro que quieres eliminar la tarea?')">Eliminar</a> 
                 </td>
             </tr>
         }

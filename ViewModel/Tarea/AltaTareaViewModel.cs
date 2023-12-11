@@ -13,7 +13,7 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel
 
         [Required(ErrorMessage = "Este campo es requerido.")]
         [Display(Name = "Estado")] 
-        public EstadoTarea EstadoTarea { get; set; }
+        public StatusTask EstadoTarea { get; set; }
 
         [Required(ErrorMessage = "La descripción es obligatoria.")]
         [Display(Name = "Descripción")] 

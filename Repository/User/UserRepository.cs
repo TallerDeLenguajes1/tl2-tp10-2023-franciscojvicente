@@ -9,7 +9,7 @@ using tl2_tp10_2023_franciscojvicente.ViewModel;
 
 namespace tl2_tp10_2023_franciscojvicente.Repository 
 {
-    public class UsuarioRepository : IUsuarioRepository
+    public class UserRepository : IUserRepository
     {
         private string cadenaConexion = "Data Source=DB/kanban.db;Cache=Shared";
 

@@ -12,11 +12,11 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
 
     public class LoginController : Controller
     {
-        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IUserRepository _userRepository;
         private readonly ILogger<HomeController> _logger;
 
-        public LoginController(IUsuarioRepository usuarioRepository, ILogger<HomeController> logger) {
-            _usuarioRepository = usuarioRepository;
+        public LoginController(IUserRepository userRepository, ILogger<HomeController> logger) {
+            _userRepository = userRepository;
             _logger = logger;
         }
 
@@ -32,7 +32,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             try
             {
                 if(!ModelState.IsValid) return RedirectToAction("Index");
-                var usuarioLogeado = _usuarioRepository.Login(loginViewModel.NombreDeUsuario, loginViewModel.Contrasenia);
+                var usuarioLogeado = _userRepository.Login(loginViewModel.NombreDeUsuario, loginViewModel.Contrasenia);
                 LoginUsuario(new LoginUsuarioViewModel(usuarioLogeado));
                 _logger.LogInformation($"Acceso correcto por parte del usuario {loginViewModel.NombreDeUsuario}");
                 return RedirectToRoute(new { controller = "Home", action = "Index" });

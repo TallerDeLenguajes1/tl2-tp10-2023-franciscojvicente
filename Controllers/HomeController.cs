@@ -9,7 +9,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    readonly UsuarioRepository repositorioUser = new();
+    // readonly UsuarioRepository repositorioUser = new();
 
     public HomeController(ILogger<HomeController> logger)
     {
@@ -28,6 +28,14 @@ public class HomeController : Controller
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        string? errorMessage = TempData["ErrorMessage"] as string;
+        string? stackTrace = TempData["StackTrace"] as string;
+
+        // Puedes pasar los datos a la vista si es necesario
+        ViewData["ErrorMessage"] = errorMessage;
+        ViewData["StackTrace"] = stackTrace;
+
+        return View();
+        // return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

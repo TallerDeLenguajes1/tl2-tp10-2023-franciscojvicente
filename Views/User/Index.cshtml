@@ -24,8 +24,8 @@
         <th>@usuario.NombreDeUsuario</th>
         <th>@usuario.Rol</th>
         <td>
-          <a class="text-decoration-none me-1 btn btn-primary" asp-controller="Usuario" asp-action="UpdateUser" asp-route-idUser="@usuario.Id">Editar</a>
-          <a class="text-decoration-none ms-1 btn btn-primary" asp-controller="Usuario" asp-action="DeleteUser" asp-route-idUser="@usuario.Id" onclick="return confirm('¿Estas seguro que quieres eliminar el usuario?')">Eliminar</a> 
+          <a class="text-decoration-none me-1 btn btn-primary" asp-controller="User" asp-action="UpdateUser" asp-route-idUser="@usuario.Id">Editar</a>
+          <a class="text-decoration-none ms-1 btn btn-primary" asp-controller="User" asp-action="DeleteUser" asp-route-idUser="@usuario.Id" onclick="return confirm('¿Estas seguro que quieres eliminar el usuario?')">Eliminar</a> 
         </td>
     </tr>
     }

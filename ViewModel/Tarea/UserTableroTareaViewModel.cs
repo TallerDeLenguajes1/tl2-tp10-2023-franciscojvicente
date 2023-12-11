@@ -6,14 +6,14 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel
         public List<Usuario>? Usuarios { get; set; }
         public List<Tablero>? Tableros { get; set; }
         public Tarea? Tarea { get; set; }
-        public EstadoTarea EstadoTarea { get; set; }
+        public StatusTask EstadoTarea { get; set; }
 
         public UserTableroTareaViewModel()
         {
             Usuarios = new List<Usuario>();
             Tableros = new List<Tablero>();
             Tarea = new Tarea();
-            EstadoTarea = new EstadoTarea();
+            EstadoTarea = new StatusTask();
         }
     }
 }

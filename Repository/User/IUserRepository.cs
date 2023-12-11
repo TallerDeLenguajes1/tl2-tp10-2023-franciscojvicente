@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using tl2_tp10_2023_franciscojvicente.Models;
 using tl2_tp10_2023_franciscojvicente.ViewModel;
 namespace tl2_tp10_2023_franciscojvicente.Repository  {
-    public interface IUsuarioRepository
+    public interface IUserRepository
     {
         public List<UsuarioViewModel> GetAll();
         public Usuario GetById(int id);

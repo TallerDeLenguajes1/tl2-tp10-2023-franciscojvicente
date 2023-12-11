@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using tl2_tp10_2023_franciscojvicente.Models;
 
 namespace tl2_tp10_2023_franciscojvicente.Repository  {
-    public interface ITareaRepository
+    public interface ITaskRepository
     {
         public List<Tarea> GetAll();
         public List<Tarea> GetAllTareasByUser(int idUser);
@@ -14,5 +14,8 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
         public void Create(Tarea tarea);
         public void Update(Tarea tarea, int idTarea);
         public void Delete(int idTarea);
+        public void UpdateStatus(int idTask, int status);
+        public void DeleteByBoard(int idTablero);
+        public void DeleteByUser(int idUser);
     }
 }

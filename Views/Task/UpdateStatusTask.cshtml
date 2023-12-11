@@ -1,0 +1,20 @@
+@model UpdateStatusTaskViewModel
+
+<h1 class="text-center text-primary">Modificar Estado Tarea</h1>
+<form asp-controller="Task" asp-action="UpdateStatusTask">
+        <input hidden asp-for="@Model.Id">
+    <div class="mb-3">
+        <label class="form-label" asp-for="@Model.EstadoTarea"></label>
+        <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.EstadoTarea" required>
+        <option selected>@Model.EstadoTarea</option>
+        @foreach (var estado in Enum.GetValues(typeof(StatusTask)))
+        {
+            <option value="@estado">@estado</option>
+        }
+    </select>
+     <span asp-validation-for="@Model.EstadoTarea" class="text-danger"></span> 
+    </div>
+    <button class="btn btn-primary mt-2" type="submit">Enviar</button>
+</form>
+
+@section Scripts{<partial name="_ValidationScriptsPartial"/>}

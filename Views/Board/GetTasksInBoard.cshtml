@@ -1,0 +1,50 @@
+@model GetTasksInBoardViewModel
+@{
+    var id = (int)Context.Session.GetInt32("Id");
+    var nombreDeUsuario = Context.Session.GetString("NombreDeUsuario");
+    var rol = Context.Session.GetString("Rol");
+}
+
+<div class="text-center">
+    <h1 class="text-primary">Tareas del tablero</h1>
+</div>
+@if (@Model.IdOwnerBoard == id) {
+    <div class="">
+    <a class="text-decoration-none me-1 btn btn-primary" asp-controller="Task" asp-action="CreateTask">Crear Tarea</a>
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Id Tablero</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Color</th>
+            <th scope="col">Id Usuario Asignado</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tarea in Model.Tareas) {
+            <tr>
+                <th scope="row">@tarea.Id</th>
+                <th scope="row">@tarea.IdTablero</th>
+                <th scope="row">@tarea.Nombre</th>
+                <th scope="row">@tarea.EstadoTarea</th>
+                <th scope="row">@tarea.Descripcion</th>
+                <th scope="row">@tarea.Color</th>
+                <th scope="row">@tarea.Id_usuario_asignado</th>
+                @if (tarea.Id_usuario_asignado == id) {
+                    <td>
+                        <a class="text-decoration-none me-1 btn btn-primary" asp-controller="Task" asp-action="UpdateStatusTask" asp-route-idTask="@tarea.Id">Editar</a>
+                        <a class="text-decoration-none ms-1 btn btn-primary" asp-controller="Task" asp-action="DeleteTask" asp-route-idTarea="@tarea.Id" onclick="return confirm('¿Estas seguro que quieres eliminar la tarea?')">Eliminar</a> 
+                    </td>
+                } else {
+                    <td></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,6 +1,5 @@
 using tl2_tp10_2023_franciscojvicente.Models;
 using System.ComponentModel.DataAnnotations;
-// using MVC.Models;
 
 namespace tl2_tp10_2023_franciscojvicente.ViewModel {
     public class AltaTableroViewModel
@@ -16,11 +15,11 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
         [Required(ErrorMessage = "La descripción es obligatoria.")]
         [Display(Name = "Descripción")] 
         public string? Descripcion { get; set; }
-        public List<UsuarioIDViewModel>? Usuarios { get; set; }
+        // public List<UsuarioIDViewModel>? Usuarios { get; set; }
 
         public AltaTableroViewModel(Tablero tablero)
         {
-            Usuarios = new List<UsuarioIDViewModel>();
+            // Usuarios = new List<UsuarioIDViewModel>();
             Id_usuario_propietario = tablero.Id_usuario_propietario;
             Nombre = tablero.Nombre;
             Descripcion = tablero.Descripcion;

@@ -1,7 +1,7 @@
 @model UpdateUserViewModel
 
-<h1 class="text-center">Modificar Usuario</h1>
-<form asp-controller="Usuario" asp-action="UpdateUser">
+<h1 class="text-center text-primary">Modificar Usuario</h1>
+<form asp-controller="User" asp-action="UpdateUser">
     <input hidden asp-for="@Model.Id">
     <div  class="form-group">
         <label asp-for="@Model.NombreDeUsuario" class="form-label"></label>
