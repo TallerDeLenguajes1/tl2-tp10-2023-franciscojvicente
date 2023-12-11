@@ -11,12 +11,17 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private string cadenaConexion = "Data Source=DB/kanban.db;Cache=Shared";
+        private readonly string _cadenaConexion;
+
+        public UserRepository(string cadenaConexion)
+        {
+            _cadenaConexion = cadenaConexion;
+        }
 
         public void Create(Usuario usuario)
         {
             var query = $"insert into Usuario (nombre_de_usuario, rol, contrasenia) values (@nombre_de_usuario, @rol, @contrasenia);";
-            using SQLiteConnection connection = new(cadenaConexion);
+            using SQLiteConnection connection = new(_cadenaConexion);
             connection.Open();
             var command = new SQLiteCommand(query, connection);
             command.Parameters.Add(new SQLiteParameter("@nombre_de_usuario", usuario.NombreDeUsuario));
@@ -29,7 +34,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
 
         public void Delete(int id)
         {
-            SQLiteConnection connection = new(cadenaConexion);
+            SQLiteConnection connection = new(_cadenaConexion);
             SQLiteCommand command = connection.CreateCommand();
             command.CommandText = $"delete from Usuario where id = @id;";
             command.Parameters.Add(new SQLiteParameter("@id", id));
@@ -42,7 +47,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
         public List<UsuarioViewModel> GetAll() {
             var queryString = @"SELECT id, nombre_de_usuario, rol FROM usuario;";
             List<UsuarioViewModel> usuarios = new();
-            using (SQLiteConnection connection = new(cadenaConexion))
+            using (SQLiteConnection connection = new(_cadenaConexion))
             {
                 SQLiteCommand command = new(queryString, connection);
                 connection.Open();
@@ -67,7 +72,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
         public List<UsuarioIDViewModel> GetAllID() {
             var queryString = @"SELECT id FROM usuario;";
             List<UsuarioIDViewModel> usuarios = new();
-            using (SQLiteConnection connection = new(cadenaConexion))
+            using (SQLiteConnection connection = new(_cadenaConexion))
             {
                 SQLiteCommand command = new(queryString, connection);
                 connection.Open();
@@ -88,7 +93,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
         }
 
         public Usuario GetById(int id) {
-            SQLiteConnection connection = new(cadenaConexion);
+            SQLiteConnection connection = new(_cadenaConexion);
             var usuario = new Usuario();
             SQLiteCommand command = connection.CreateCommand();
             command.CommandText = "SELECT * FROM usuario WHERE id = @idUser";
@@ -110,7 +115,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
 
         public void Update(Usuario usuario, int id)
         {
-            SQLiteConnection connection = new(cadenaConexion);
+            SQLiteConnection connection = new(_cadenaConexion);
             SQLiteCommand command = connection.CreateCommand();
             command.CommandText = $"update Usuario set nombre_de_usuario = @nombre_de_usuario, rol = @rol, contrasenia = @contrasenia where id = @id;";
             command.Parameters.Add(new SQLiteParameter("@id", id));
@@ -124,7 +129,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
         }
 
         public Usuario Login(string nombre, string contrasenia) {
-            SQLiteConnection connection = new(cadenaConexion);
+            SQLiteConnection connection = new(_cadenaConexion);
             SQLiteCommand command = connection.CreateCommand();
             command.CommandText = @"SELECT * FROM usuario where nombre_de_usuario = @nombre_de_usuario and contrasenia = @contrasenia;";
             command.Parameters.Add(new SQLiteParameter("@nombre_de_usuario", nombre));
