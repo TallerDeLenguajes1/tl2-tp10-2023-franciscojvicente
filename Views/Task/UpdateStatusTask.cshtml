@@ -3,6 +3,7 @@
 <h1 class="text-center text-primary">Modificar Estado Tarea</h1>
 <form asp-controller="Task" asp-action="UpdateStatusTask">
         <input hidden asp-for="@Model.Id">
+        <input hidden asp-for="@Model.IdBoard">
     <div class="mb-3">
         <label class="form-label" asp-for="@Model.EstadoTarea"></label>
         <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.EstadoTarea" required>

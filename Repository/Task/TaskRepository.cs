@@ -53,7 +53,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             command.Parameters.Add(new SQLiteParameter("@id", idTablero));
             connection.Open();
             var affectedRow = command.ExecuteNonQuery();
-            if (affectedRow == 0) throw new Exception($"Se produjo un error al eliminar las tareas del tablero {idTablero}");
+            if (affectedRow < 0) throw new Exception($"Se produjo un error al eliminar las tareas del tablero {idTablero}");
             connection.Close();
         }
 

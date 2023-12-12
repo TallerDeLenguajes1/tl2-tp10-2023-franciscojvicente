@@ -29,23 +29,20 @@
                 <th scope="row">@tablero.Nombre</th>
                 <th scope="row">@tablero.Descripcion</th>
                 @if (tablero.Id_usuario_propietario == id || rol == "Administrador") {
-                    <td>
-                    <a class="text-decoration-none me-1 btn btn-primary" asp-controller="Board" asp-action="GetTasksInBoard" asp-route-idBoard="@tablero.Id" asp-route-idOwnerBoard="@tablero.Id_usuario_propietario">Ver Tareas</a>
+                    <td class="ms-2">
+                    <a class="text-decoration-none me-1 btn btn-primary btn-inline ms-2" asp-controller="Task" asp-action="GetTasksInBoard" asp-route-idBoard="@tablero.Id" asp-route-idOwnerBoard="@tablero.Id_usuario_propietario">Tareas</a>
                     </td>
-                    <td>
-                    <a class="text-decoration-none me-1 btn btn-primary" asp-controller="Board" asp-action="UpdateBoard" asp-route-idTablero="@tablero.Id">Editar</a>
-                    </td>
-                    <td>
-                    <a class="text-decoration-none ms-1 btn btn-primary" asp-controller="Board" asp-action="DeleteBoard" asp-route-idTablero="@tablero.Id" onclick="return confirm('¿Estas seguro que quieres eliminar el tablero?')">Eliminar</a>
+                    <td class="">
+                    <a class="text-decoration-none me-1 btn btn-primary ms-5" asp-controller="Board" asp-action="UpdateBoard" asp-route-idTablero="@tablero.Id">Editar</a>
+                    <a class="text-decoration-none ms-1 btn btn-primary ms-5" asp-controller="Board" asp-action="DeleteBoard" asp-route-idTablero="@tablero.Id" onclick="return confirm('¿Estas seguro que quieres eliminar el tablero?')">Eliminar</a>
                     </td>
                 } else {
                     <td>
-                        <a class="text-decoration-none me-1 btn btn-primary" asp-controller="Board" asp-action="GetTasksInBoard" asp-route-idBoard="@tablero.Id" asp-route-idOwnerBoard="@tablero.Id_usuario_propietario">Ver Tareas</a>
+                        <a class="text-decoration-none me-1 btn btn-primary ms-2" asp-controller="Task" asp-action="GetTasksInBoard" asp-route-idBoard="@tablero.Id" asp-route-idOwnerBoard="@tablero.Id_usuario_propietario">Tareas</a>
                     </td>
                     <td>
-                        No puedes editar o eliminar este tablero ya que no eres el propietario.
+                        <span class="">No puedes editar o eliminar este tablero ya que no eres el propietario.</span>
                     </td>
-                    <td></td>
                 }
             </tr>
         }

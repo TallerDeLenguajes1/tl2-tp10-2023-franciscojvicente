@@ -174,12 +174,12 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
             return tablero;
         }
 
-        public List<Tablero> GetAllOwnAndAssigned(int idUser)
+        public List<Tablero> GetAllOwnAndAssigned(int idUser) // tableros propios y en los que tiene tareas
         {
             SQLiteConnection connection = new(_cadenaConexion);
             List<Tablero> tableros = new();
             SQLiteCommand command = connection.CreateCommand();
-            command.CommandText = "select t.id, t.id_usuario_propietario, t.nombre, t.descripcion, t.activo from tablero t inner join tarea on (tarea.id_tablero = t.id and tarea.id_usuario_asignado = @idUser) union select * from tablero where id_usuario_propietario = @idUser order by id_usuario_propietario asc;";
+            command.CommandText = "select t.id, t.id_usuario_propietario, t.nombre, t.descripcion from tablero t inner join tarea on (tarea.id_tablero = t.id and tarea.id_usuario_asignado = @idUser) union select * from tablero where id_usuario_propietario = @idUser order by id_usuario_propietario asc;";
             command.Parameters.Add(new SQLiteParameter("@idUser", idUser));
             connection.Open();
             using (SQLiteDataReader reader = command.ExecuteReader()) {

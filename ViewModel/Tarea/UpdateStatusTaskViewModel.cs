@@ -9,9 +9,12 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
         [Display(Name = "Estado")] 
         public StatusTask EstadoTarea { get; set; }
 
-        public UpdateStatusTaskViewModel(int id, StatusTask statusTask) {
+        public int IdBoard { get; set; }
+
+        public UpdateStatusTaskViewModel(int id, StatusTask statusTask, int idBoard) {
             Id = id;
             EstadoTarea = statusTask;
+            IdBoard = idBoard;
         }
 
         public UpdateStatusTaskViewModel() {

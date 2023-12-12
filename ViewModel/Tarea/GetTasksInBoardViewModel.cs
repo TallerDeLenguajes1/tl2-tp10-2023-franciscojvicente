@@ -5,6 +5,7 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
     {
         public List<Tarea>? Tareas { get; set; }
         public int IdOwnerBoard { get; set; }
+        public int IDBoard { get; set; }
 
         public GetTasksInBoardViewModel(List<Tarea> tareas) {
             Tareas = tareas;

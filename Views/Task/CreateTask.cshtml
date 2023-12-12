@@ -5,11 +5,7 @@
     <div class="mb-3">
         <label class="form-label" asp-for="@Model.IdTablero"></label>
         <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.IdTablero">
-            <option selected>Seleccione uno</option>
-            @foreach (var tablero in Model.Tableros)
-            {
-                <option>@tablero.Id</option>
-            }
+            <option selected>@Model.IdTablero</option>
         </select>
         <span asp-validation-for="@Model.IdTablero" class="text-danger"></span>
     </div>

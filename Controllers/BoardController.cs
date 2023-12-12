@@ -51,25 +51,6 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             }
         }
 
-        public IActionResult GetTasksInBoard(int idBoard, int idOwnerBoard)
-        {
-            try
-            {
-                if (!IsLogged()) return RedirectToRoute(new {controller = "Login", action = "Index"});
-                var tasks = _taskRepository.GetAllTareasByTablero(idBoard);
-                var getTasks = new GetTasksInBoardViewModel(tasks);
-                getTasks.IdOwnerBoard = idOwnerBoard;
-                return View(getTasks);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.ToString());
-                TempData["ErrorMessage"] = ex.Message;
-                TempData["StackTrace"] = ex.StackTrace;
-                return RedirectToRoute(new {controller = "Home", action = "Error"});
-            }
-        }
-
         [HttpGet]
         public IActionResult CreateBoard()
         {
@@ -78,7 +59,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 if(!IsLogged()) return RedirectToRoute(new {controller = "Home", action = "Index"});
                 // if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 AltaTableroViewModel altaTableroViewModel = new();
-                // altaTableroViewModel.Usuarios = _userRepository.GetAllID();
+                altaTableroViewModel.Usuarios = _userRepository.GetAllID();
                 // if (altaTableroViewModel.Usuarios == null) return NoContent();
                 return View(altaTableroViewModel);
             }
@@ -101,7 +82,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 // if(!ModelState.IsValid) return RedirectToAction("Index");
                 var tablero = new Tablero(altaTableroViewModel);
                 if (tablero == null) return null;
-                tablero.Id_usuario_propietario = (int)HttpContext.Session.GetInt32("Id");
+                // tablero.Id_usuario_propietario = (int)HttpContext.Session.GetInt32("Id");
                 _boardRepository.Create(tablero);
                 _logger.LogInformation($"Tablero {tablero.Nombre} creado correctamente");
                 return RedirectToAction("Index");
@@ -124,7 +105,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 var tablero = _boardRepository.GetById(idTablero);
                 if (tablero == null) return NoContent();
                 UpdateTableroViewModel updateTableroViewModel = new(tablero);
-                // updateTableroViewModel.Usuarios = _userRepository.GetAllID();
+                updateTableroViewModel.Usuarios = _userRepository.GetAllID();
                 return View(updateTableroViewModel);    
             }
             catch (Exception ex)
