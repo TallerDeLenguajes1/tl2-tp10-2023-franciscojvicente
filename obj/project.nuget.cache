@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uezviH7fn28Ird+DySV/LDTnIFldmIO27xyKRwBp69CvbXSy8KMRtERMZ2nvOonP89rEg0XeVOKZ5jfQb+OK/w==",
+  "dgSpecHash": "WOPV2wC5VUbPi318QV6FmDRN12HMFp83gK3KmsrBCaNC6DsZOFPIivtfGhaXEd+khjwV7+cGAbjIqXDAKW10bg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\franv\\tp10-taller\\tl2-tp10-2023-franciscojvicente\\tp10-taller (copy).csproj",
+  "projectFilePath": "C:\\Users\\franv\\Taller de Lenguajes II\\Segundo Parcial\\tp10-taller\\tl2-tp10-2023-franciscojvicente\\tp10-taller (copy).csproj",
   "expectedPackageFiles": [
     "C:\\Users\\franv\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\franv\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\2.2.0\\microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",

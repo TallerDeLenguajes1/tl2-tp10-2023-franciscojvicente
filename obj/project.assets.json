@@ -1968,11 +1968,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\franv\\tp10-taller\\tl2-tp10-2023-franciscojvicente\\tp10-taller (copy).csproj",
+      "projectUniqueName": "C:\\Users\\franv\\Taller de Lenguajes II\\Segundo Parcial\\tp10-taller\\tl2-tp10-2023-franciscojvicente\\tp10-taller (copy).csproj",
       "projectName": "tp10-taller (copy)",
-      "projectPath": "C:\\Users\\franv\\tp10-taller\\tl2-tp10-2023-franciscojvicente\\tp10-taller (copy).csproj",
+      "projectPath": "C:\\Users\\franv\\Taller de Lenguajes II\\Segundo Parcial\\tp10-taller\\tl2-tp10-2023-franciscojvicente\\tp10-taller (copy).csproj",
       "packagesPath": "C:\\Users\\franv\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\franv\\tp10-taller\\tl2-tp10-2023-franciscojvicente\\obj\\",
+      "outputPath": "C:\\Users\\franv\\Taller de Lenguajes II\\Segundo Parcial\\tp10-taller\\tl2-tp10-2023-franciscojvicente\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\franv\\AppData\\Roaming\\NuGet\\NuGet.Config",

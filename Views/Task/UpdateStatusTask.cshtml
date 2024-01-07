@@ -1,3 +1,6 @@
+@{
+    ViewData["Title"] = "Modificar estado de tarea";
+}
 @model UpdateStatusTaskViewModel
 
 <h1 class="text-center text-primary">Modificar Estado Tarea</h1>
@@ -8,7 +11,7 @@
         <label class="form-label" asp-for="@Model.EstadoTarea"></label>
         <select class="form-select w-50" aria-label="Default select example" asp-for="@Model.EstadoTarea" required>
         <option selected>@Model.EstadoTarea</option>
-        @foreach (var estado in Enum.GetValues(typeof(StatusTask)))
+        @foreach (var estado in Enum.GetValues(typeof(StatusTask)))     
         {
             <option value="@estado">@estado</option>
         }
