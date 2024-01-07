@@ -92,11 +92,13 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
-                var usuarioBuscado = _userRepository.GetById(idUser);
-                if (usuarioBuscado == null) return NoContent();
-                var usuarioModificar = new UpdateUserViewModel(usuarioBuscado);
-                usuarioModificar.IdLogueado = (int)HttpContext.Session.GetInt32("Id");
-                return View(usuarioModificar);
+                var userWanted = _userRepository.GetById(idUser);
+                if (userWanted == null) return NoContent();
+                var userUpdate = new UpdateUserViewModel(userWanted);
+                #pragma warning disable CS8629 // Desactivo warning de null
+                userUpdate.IdLogueado = (int)HttpContext.Session.GetInt32("Id");
+                #pragma warning restore CS8629 // Activo warning de null
+                return View(userUpdate);
             }
             catch (Exception ex)
             {

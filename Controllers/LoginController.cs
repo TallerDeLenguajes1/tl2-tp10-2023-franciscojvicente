@@ -32,8 +32,10 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             try
             {
                 if(!ModelState.IsValid) return RedirectToAction("Index");
-                var usuarioLogeado = _userRepository.Login(loginViewModel.NombreDeUsuario, loginViewModel.Contrasenia);
-                LoginUsuario(new LoginUsuarioViewModel(usuarioLogeado));
+                #pragma warning disable CS8604 // Desactivo warning de nulo
+                var userLogged = _userRepository.Login(loginViewModel.NombreDeUsuario, loginViewModel.Contrasenia);
+                #pragma warning restore CS8604 // Activo warning de nulo
+                LoginUsuario(new LoginUsuarioViewModel(userLogged));
                 _logger.LogInformation($"Acceso correcto por parte del usuario {loginViewModel.NombreDeUsuario}");
                 return RedirectToRoute(new { controller = "Home", action = "Index" });
             }
@@ -64,7 +66,9 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             if (loginUsuarioViewModel.Id == 0 || loginUsuarioViewModel.NombreDeUsuario == null || loginUsuarioViewModel.Rol == null) return;
             HttpContext.Session.SetInt32("Id", loginUsuarioViewModel.Id);
             HttpContext.Session.SetString("NombreDeUsuario", loginUsuarioViewModel.NombreDeUsuario);
+            #pragma warning disable CS8604 // Desactivo warning de nulo
             HttpContext.Session.SetString("Rol", loginUsuarioViewModel.Rol.ToString());
+            #pragma warning restore CS8604 // Activo warning de nulo
         }
         
         private void LogoutUsuario()

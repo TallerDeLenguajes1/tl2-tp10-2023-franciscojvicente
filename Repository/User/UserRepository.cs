@@ -135,7 +135,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             command.Parameters.Add(new SQLiteParameter("@nombre_de_usuario", nombre));
             command.Parameters.Add(new SQLiteParameter("@contrasenia", contrasenia));
             connection.Open();
-            Usuario usuario = null;
+            Usuario? usuario = null ;
             using(SQLiteDataReader reader = command.ExecuteReader()) {
                 while (reader.Read())
                 {
