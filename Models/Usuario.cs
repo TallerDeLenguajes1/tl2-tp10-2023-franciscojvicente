@@ -13,7 +13,7 @@ namespace tl2_tp10_2023_franciscojvicente.Models
         public Roles? Rol { get => rol; set => rol = value; }
         public string? Contrasenia { get => contrasenia; set => contrasenia = value; }
 
-        public Usuario(AltaUsuarioViewModel altaUsuarioViewModel) {
+        public Usuario(CreateUserViewModel altaUsuarioViewModel) {
             NombreDeUsuario = altaUsuarioViewModel.NombreDeUsuario;
             Rol = altaUsuarioViewModel.Rol;
             Contrasenia = altaUsuarioViewModel.Contrasenia;

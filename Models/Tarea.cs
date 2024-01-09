@@ -18,7 +18,7 @@ namespace tl2_tp10_2023_franciscojvicente.Models
         public string? Descripcion { get => descripcion; set => descripcion = value; }
         public string? Color { get => color; set => color = value; }
         public int Id_usuario_asignado { get => id_usuario_asignado; set => id_usuario_asignado = value; }
-        public Tarea(AltaTareaViewModel altaTareaViewModel) {
+        public Tarea(CreateTaskViewModel altaTareaViewModel) {
             IdTablero = altaTareaViewModel.IdTablero;
             Nombre = altaTareaViewModel.Nombre;
             EstadoTarea = altaTareaViewModel.EstadoTarea;
@@ -26,7 +26,7 @@ namespace tl2_tp10_2023_franciscojvicente.Models
             Color = altaTareaViewModel.Color;
             Id_usuario_asignado = altaTareaViewModel.Id_usuario_asignado;
         }
-        public Tarea(UpdateTareaViewModel updateTareaViewModel) {
+        public Tarea(UpdateTaskViewModel updateTareaViewModel) {
             Id = updateTareaViewModel.Id;
             IdTablero = updateTareaViewModel.IdTablero;
             Nombre = updateTareaViewModel.Nombre;

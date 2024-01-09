@@ -30,6 +30,7 @@ public class HomeController : Controller
     {
         string? errorMessage = TempData["ErrorMessage"] as string;
         string? stackTrace = TempData["StackTrace"] as string;
+        
 
         // Puedes pasar los datos a la vista si es necesario
         ViewData["ErrorMessage"] = errorMessage;

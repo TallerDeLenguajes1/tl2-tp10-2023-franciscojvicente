@@ -40,10 +40,10 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.ToString());
+                _logger.LogError(ex.Message);
                 TempData["ErrorMessage"] = ex.Message;
                 TempData["StackTrace"] = ex.StackTrace;
-                return RedirectToRoute(new {controller = "Home", action = "Error"});
+                return RedirectToAction("Error", "Home");
             }
         }
 
@@ -54,11 +54,11 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             {
                 if(!IsLogged()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
-                return View(new AltaUsuarioViewModel());
+                return View(new CreateUserViewModel());
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.ToString());
+                _logger.LogError(ex.Message);
                 TempData["ErrorMessage"] = ex.Message;
                 TempData["StackTrace"] = ex.StackTrace;
                 return RedirectToRoute(new {controller = "Home", action = "Error"});
@@ -66,19 +66,19 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateUser(AltaUsuarioViewModel altaUsuarioViewModel)
+        public IActionResult CreateUser(CreateUserViewModel createUserViewModel)
         {
             try
             {
                 // if(!ModelState.IsValid) return RedirectToAction("Index");
-                var usuario = new Usuario(altaUsuarioViewModel);
+                var usuario = new Usuario(createUserViewModel);
                 _userRepository.Create(usuario);
                 _logger.LogInformation($"Usuario {usuario.NombreDeUsuario} creado correctamente");
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.ToString());
+                _logger.LogError(ex.Message);
                 TempData["ErrorMessage"] = ex.Message;
                 TempData["StackTrace"] = ex.StackTrace;
                 return RedirectToRoute(new {controller = "Home", action = "Error"});
@@ -102,7 +102,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.ToString());
+                _logger.LogError(ex.Message);
                 TempData["ErrorMessage"] = ex.Message;
                 TempData["StackTrace"] = ex.StackTrace;
                 return RedirectToRoute(new {controller = "Home", action = "Error"});
@@ -124,7 +124,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.ToString());
+                _logger.LogError(ex.Message);
                 TempData["ErrorMessage"] = ex.Message;
                 TempData["StackTrace"] = ex.StackTrace;
                 return RedirectToRoute(new {controller = "Home", action = "Error"});
@@ -148,7 +148,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.ToString());
+                _logger.LogError(ex.Message);
                 TempData["ErrorMessage"] = ex.Message;
                 TempData["StackTrace"] = ex.StackTrace;
                 return RedirectToRoute(new {controller = "Home", action = "Error"});
@@ -156,9 +156,10 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
         }
         private bool IsLogged()
         {
-            if (HttpContext.Session != null && HttpContext.Session.GetString("Id") != null && HttpContext.Session.GetString("NombreDeUsuario") != null && HttpContext.Session.GetString("Rol") != null) return true; 
-            throw new Exception ($"El usuario no se encuentra logueado");
+            if (HttpContext.Session != null && HttpContext.Session.GetString("Id") != null && HttpContext.Session.GetString("NombreDeUsuario") != null && HttpContext.Session.GetString("Rol") != null) return true;
+            throw new Exception("El usuario no se encuentra logueado");
         }
+
         private bool IsAdmin()
         {
             if (HttpContext.Session.GetString("Rol") == "Administrador") return true;

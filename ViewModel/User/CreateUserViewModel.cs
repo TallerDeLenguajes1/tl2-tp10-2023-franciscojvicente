@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using tl2_tp10_2023_franciscojvicente.Models;
 
 namespace tl2_tp10_2023_franciscojvicente.ViewModel {
-    public class AltaUsuarioViewModel
+    public class CreateUserViewModel
     {
         [Required(ErrorMessage = "El nombre de usuario es obligatorio.")]
         [Display(Name = "Nombre de usuario")] 
@@ -17,12 +17,12 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
         [Display(Name = "Contraseña")] 
         public string? Contrasenia { get; set; }
 
-        public AltaUsuarioViewModel(Usuario usuario) {
+        public CreateUserViewModel(Usuario usuario) {
             NombreDeUsuario = usuario.NombreDeUsuario;
             Rol = usuario.Rol;
             Contrasenia = usuario.Contrasenia;
         }
-        public AltaUsuarioViewModel() {
+        public CreateUserViewModel() {
         }
     }
 }

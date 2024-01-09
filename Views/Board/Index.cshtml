@@ -35,7 +35,7 @@
                     </td>
                     <td class="">
                     <a class="text-decoration-none me-1 btn btn-primary ms-5" asp-controller="Board" asp-action="UpdateBoard" asp-route-idTablero="@tablero.Id">Editar</a>
-                    <a class="text-decoration-none ms-1 btn btn-primary ms-5" asp-controller="Board" asp-action="DeleteBoard" asp-route-idTablero="@tablero.Id" onclick="return confirm('¿Estas seguro que quieres eliminar el tablero?')">Eliminar</a>
+                    <a class="text-decoration-none ms-1 btn btn-primary ms-5" asp-controller="Board" asp-action="DeleteBoard" asp-route-idTablero="@tablero.Id" onclick="return confirm('¿Estas seguro que quieres eliminar el tablero @tablero.Nombre?')">Eliminar</a>
                     </td>
                 } else {
                     <td>

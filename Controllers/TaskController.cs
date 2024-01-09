@@ -79,20 +79,20 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             try
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
-                AltaTareaViewModel altaTareaViewModel = new();
-                altaTareaViewModel.Usuarios = _userRepository.GetAllID();
-                altaTareaViewModel.IdTablero = idBoard;
+                CreateTaskViewModel createTaskViewModel = new();
+                createTaskViewModel.Usuarios = _userRepository.GetAllID();
+                createTaskViewModel.IdTablero = idBoard;
                 if (IsOperator())
                 {
                     var idUser = HttpContext.Session.GetInt32("Id");
                     if(idUser == null) return NoContent();
-                    // altaTareaViewModel.Tableros = _boardRepository.GetAllIDByUser((int)idUser);
-                    return View(altaTareaViewModel);
+                    // createTaskViewModel.Tableros = _boardRepository.GetAllIDByUser((int)idUser);
+                    return View(createTaskViewModel);
                 }
                 if (IsAdmin())
                 {
-                    // altaTareaViewModel.Tableros = _boardRepository.GetAllID();
-                    return View(altaTareaViewModel);
+                    // createTaskViewModel.Tableros = _boardRepository.GetAllID();
+                    return View(createTaskViewModel);
                 }
                 return NoContent(); 
             }
@@ -106,18 +106,18 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
         }
 
         [HttpPost]
-        public IActionResult? CreateTask(AltaTareaViewModel altaTareaViewModel)
+        public IActionResult? CreateTask(CreateTaskViewModel createTaskViewModel)
         {
             try
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 // if(!ModelState.IsValid) return RedirectToAction("Index");
-                var tarea = new Tarea(altaTareaViewModel);
+                var tarea = new Tarea(createTaskViewModel);
                 if (tarea == null) return null;
                 _taskRepository.Create(tarea);
                 _logger.LogInformation($"Tarea {tarea.Nombre} creada correctamente");
-                var idOwnerBoard = _boardRepository.GetById(altaTareaViewModel.IdTablero).Id_usuario_propietario;
-                return RedirectToAction("GetTasksInBoard", "Task", new { idBoard = altaTareaViewModel.IdTablero, idOwnerBoard = idOwnerBoard });
+                var idOwnerBoard = _boardRepository.GetById(createTaskViewModel.IdTablero).Id_usuario_propietario;
+                return RedirectToAction("GetTasksInBoard", "Task", new { idBoard = createTaskViewModel.IdTablero, idOwnerBoard = idOwnerBoard });
             }
             catch (Exception ex)
             {
@@ -133,24 +133,22 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
         {
             try
             {
-                
-                
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 var tarea = _taskRepository.GetById(idTarea);
                 if (tarea == null) return NoContent();
-                UpdateTareaViewModel updateTareaViewModel = new(tarea);
-                updateTareaViewModel.Usuarios = _userRepository.GetAllID();
+                UpdateTaskViewModel updateTaskViewModel = new(tarea);
+                updateTaskViewModel.Usuarios = _userRepository.GetAllID();
                 if (IsOperator())
                 {
                     var idUser = HttpContext.Session.GetInt32("Id");
                     if(idUser == null) return NoContent();
-                    updateTareaViewModel.Tableros = _boardRepository.GetAllIDByUser((int)idUser);
-                    return View(updateTareaViewModel);
+                    updateTaskViewModel.Tableros = _boardRepository.GetAllIDByUser((int)idUser);
+                    return View(updateTaskViewModel);
                 }
                 if (IsAdmin())
                 {
-                    updateTareaViewModel.Tableros = _boardRepository.GetAllID();
-                    return View(updateTareaViewModel); 
+                    updateTaskViewModel.Tableros = _boardRepository.GetAllID();
+                    return View(updateTaskViewModel); 
                 }
                 return NoContent(); 
             }
@@ -164,17 +162,17 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
         }
 
         [HttpPost]
-        public IActionResult? UpdateTask(UpdateTareaViewModel updateTareaViewModel)
+        public IActionResult? UpdateTask(UpdateTaskViewModel updateTaskViewModel)
         {
             try
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 // if(!ModelState.IsValid) return RedirectToAction("Index");
-                var tarea = new Tarea(updateTareaViewModel);
+                var tarea = new Tarea(updateTaskViewModel);
                 _taskRepository.Update(tarea, tarea.Id);
                 _logger.LogInformation($"Tarea {tarea.Nombre} modificada correctamente");
-                var idOwnerBoard = _boardRepository.GetById(updateTareaViewModel.IdTablero).Id_usuario_propietario;
-                return RedirectToAction("GetTasksInBoard", "Task", new { idBoard = updateTareaViewModel.IdTablero, idOwnerBoard = idOwnerBoard });
+                var idOwnerBoard = _boardRepository.GetById(updateTaskViewModel.IdTablero).Id_usuario_propietario;
+                return RedirectToAction("GetTasksInBoard", "Task", new { idBoard = updateTaskViewModel.IdTablero, idOwnerBoard = idOwnerBoard });
             }
             catch (Exception ex)
             {

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 // using MVC.Models;
 
 namespace tl2_tp10_2023_franciscojvicente.ViewModel {
-    public class UpdateTableroViewModel
+    public class UpdateBoardViewModel
     {
         public List<UsuarioIDViewModel>? Usuarios { get; set; }
         public int Id { get; set; }
@@ -18,7 +18,7 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
         [Display(Name = "Descripción")] 
         public string? Descripcion { get; set; }
 
-        public UpdateTableroViewModel(Tablero tablero)
+        public UpdateBoardViewModel(Tablero tablero)
         {
             Usuarios = new List<UsuarioIDViewModel>();
             Id = tablero.Id;
@@ -27,7 +27,7 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
             Descripcion = tablero.Descripcion;
         }
 
-        public UpdateTableroViewModel() {
+        public UpdateBoardViewModel() {
             
         }
     }

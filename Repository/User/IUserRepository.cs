@@ -7,7 +7,8 @@ using tl2_tp10_2023_franciscojvicente.ViewModel;
 namespace tl2_tp10_2023_franciscojvicente.Repository  {
     public interface IUserRepository
     {
-        public List<UsuarioViewModel> GetAll();
+        public List<UserViewModel
+        > GetAll();
         public Usuario GetById(int id);
         public void Create(Usuario usuario);
         public void Update(Usuario usuario, int id);

@@ -44,9 +44,9 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             connection.Close();
         }
 
-        public List<UsuarioViewModel> GetAll() {
+        public List<UserViewModel> GetAll() {
             var queryString = @"SELECT id, nombre_de_usuario, rol FROM usuario;";
-            List<UsuarioViewModel> usuarios = new();
+            List<UserViewModel> usuarios = new();
             using (SQLiteConnection connection = new(_cadenaConexion))
             {
                 SQLiteCommand command = new(queryString, connection);
@@ -56,7 +56,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                 {
                     while (reader.Read())
                     {
-                        var usuario = new UsuarioViewModel();
+                        var usuario = new UserViewModel();
                         usuario.Id = Convert.ToInt32(reader["id"]);
                         usuario.NombreDeUsuario = reader["nombre_de_usuario"].ToString();
                         usuario.Rol = (tl2_tp10_2023_franciscojvicente.Models.Roles)(int.TryParse(reader["rol"].ToString(), out var i) ? i : 0);

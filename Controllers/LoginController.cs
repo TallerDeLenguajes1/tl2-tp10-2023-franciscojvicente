@@ -41,7 +41,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.ToString());
+                _logger.LogError(ex.Message);
                 return RedirectToRoute(new { controller = "Login", action = "Index" });
             }
         }
@@ -56,7 +56,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.ToString());
+                _logger.LogError(ex.Message);
                 return RedirectToRoute(new { controller = "Home", action = "Error" });
             }
         }

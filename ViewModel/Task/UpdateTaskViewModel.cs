@@ -2,7 +2,7 @@ using tl2_tp10_2023_franciscojvicente.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace tl2_tp10_2023_franciscojvicente.ViewModel {
-    public class UpdateTareaViewModel
+    public class UpdateTaskViewModel
         {
             [Display(Name = "Id del tablero")]
             public int IdTablero { get; set; }
@@ -29,7 +29,7 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
             public List<TableroIDViewModel>? Tableros { get; set; }
             public int Id { get; set; }
 
-            public UpdateTareaViewModel(Tarea tarea)
+            public UpdateTaskViewModel(Tarea tarea)
             {
                 Usuarios = new List<UsuarioIDViewModel>();
                 Tableros = new List<TableroIDViewModel>();
@@ -42,7 +42,7 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
                 Id_usuario_asignado = tarea.Id_usuario_asignado;
             }
             
-            public UpdateTareaViewModel() {
+            public UpdateTaskViewModel() {
             }
 
         }

@@ -2,7 +2,7 @@ using tl2_tp10_2023_franciscojvicente.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace tl2_tp10_2023_franciscojvicente.ViewModel {
-    public class AltaTableroViewModel
+    public class CreateBoardViewModel
     {
 
         [Display(Name = "Id del usuario propietario")] 
@@ -17,14 +17,14 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
         public string? Descripcion { get; set; }
         public List<UsuarioIDViewModel>? Usuarios { get; set; }
 
-        public AltaTableroViewModel(Tablero tablero)
+        public CreateBoardViewModel(Tablero tablero)
         {
             Usuarios = new List<UsuarioIDViewModel>();
             Id_usuario_propietario = tablero.Id_usuario_propietario;
             Nombre = tablero.Nombre;
             Descripcion = tablero.Descripcion;
         }
-        public AltaTableroViewModel() {
+        public CreateBoardViewModel() {
         }
     }
 }

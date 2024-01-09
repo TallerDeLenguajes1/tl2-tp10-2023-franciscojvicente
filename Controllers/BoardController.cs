@@ -58,10 +58,10 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             {
                 if(!IsLogged()) return RedirectToRoute(new {controller = "Home", action = "Index"});
                 // if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
-                AltaTableroViewModel altaTableroViewModel = new();
-                altaTableroViewModel.Usuarios = _userRepository.GetAllID();
-                // if (altaTableroViewModel.Usuarios == null) return NoContent();
-                return View(altaTableroViewModel);
+                CreateBoardViewModel createBoardViewModel = new();
+                createBoardViewModel.Usuarios = _userRepository.GetAllID();
+                // if (createBoardViewModel.Usuarios == null) return NoContent();
+                return View(createBoardViewModel);
             }
             catch (Exception ex)
             {
@@ -73,14 +73,14 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
         }
 
         [HttpPost]
-        public IActionResult? CreateBoard(AltaTableroViewModel altaTableroViewModel)
+        public IActionResult? CreateBoard(CreateBoardViewModel createBoardViewModel)
         {
             try
             {    
                 if(!IsLogged()) return RedirectToRoute(new {controller = "Home", action = "Index"});
                 // if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 // if(!ModelState.IsValid) return RedirectToAction("Index");
-                var tablero = new Tablero(altaTableroViewModel);
+                var tablero = new Tablero(createBoardViewModel);
                 if (tablero == null) return null;
                 // tablero.Id_usuario_propietario = (int)HttpContext.Session.GetInt32("Id");
                 _boardRepository.Create(tablero);
@@ -104,9 +104,9 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 var tablero = _boardRepository.GetById(idTablero);
                 if (tablero == null) return NoContent();
-                UpdateTableroViewModel updateTableroViewModel = new(tablero);
-                updateTableroViewModel.Usuarios = _userRepository.GetAllID();
-                return View(updateTableroViewModel);    
+                UpdateBoardViewModel updateBoardViewModel = new(tablero);
+                updateBoardViewModel.Usuarios = _userRepository.GetAllID();
+                return View(updateBoardViewModel);    
             }
             catch (Exception ex)
             {
@@ -118,13 +118,13 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
         }
 
         [HttpPost]
-        public IActionResult? UpdateBoard(UpdateTableroViewModel updateTableroViewModel)
+        public IActionResult? UpdateBoard(UpdateBoardViewModel updateBoardViewModel)
         {
             try
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 // if(!ModelState.IsValid) return RedirectToAction("Index");
-                var tablero = new Tablero(updateTableroViewModel);
+                var tablero = new Tablero(updateBoardViewModel);
                 _boardRepository.Update(tablero, tablero.Id);
                 _logger.LogInformation($"Tablero {tablero.Nombre} modificado correctamente");
                 return RedirectToAction("Index");

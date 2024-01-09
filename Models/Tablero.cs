@@ -15,13 +15,13 @@ namespace tl2_tp10_2023_franciscojvicente.Models
         public string? Nombre { get => nombre; set => nombre = value; }
         public string? Descripcion { get => descripcion; set => descripcion = value; }
 
-        public Tablero(AltaTableroViewModel altaTableroViewModel) {
+        public Tablero(CreateBoardViewModel altaTableroViewModel) {
             Id_usuario_propietario = altaTableroViewModel.Id_usuario_propietario;
             Nombre = altaTableroViewModel.Nombre;
             Descripcion = altaTableroViewModel.Descripcion;
         }
 
-        public Tablero(UpdateTableroViewModel updateTableroViewModel) {
+        public Tablero(UpdateBoardViewModel updateTableroViewModel) {
             Id = updateTableroViewModel.Id;
             Id_usuario_propietario = updateTableroViewModel.Id_usuario_propietario;
             Nombre = updateTableroViewModel.Nombre;

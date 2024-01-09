@@ -51,7 +51,7 @@
                         <a class="text-decoration-none ms-1 btn btn-primary" asp-controller="Task" asp-action="UpdateTask" asp-route-idTarea="@tarea.Id">Editar</a>
                     </td>
                     <td>
-                        <a class="text-decoration-none ms-1 btn btn-primary" asp-controller="Task" asp-action="DeleteTask" asp-route-idTarea="@tarea.Id" asp-route-idBoard="@tarea.IdTablero" onclick="return confirm('¿Estas seguro que quieres eliminar la tarea?')">Eliminar</a>
+                        <a class="text-decoration-none ms-1 btn btn-primary" asp-controller="Task" asp-action="DeleteTask" asp-route-idTarea="@tarea.Id" asp-route-idBoard="@tarea.IdTablero" onclick="return confirm('¿Estas seguro que quieres eliminar la tarea @tarea.Nombre?')">Eliminar</a>
                     </td>
                 } else {
                     <td></td>
