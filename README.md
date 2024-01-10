@@ -15,10 +15,10 @@ En el siguiente trabajo práctico, se vió:
  - Validaciones
  - Cookies y variables de sesión
 
-En el TP 12 lo que se vió fue:
+En el trabajo práctico 12 lo que se vió fue:
  - Inyección de dependencias
 
-En el TP 13 profundizamos sobre: 
+Por último en el trabajo número 13 profundizamos sobre: 
  - Logueo
  - Try-catch
  - Autenticación
