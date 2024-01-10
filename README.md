@@ -1,7 +1,10 @@
-# Trabajos Prácticos 10, 11, 12 y 13
+# Tablero Kanban
+## Trabajos Prácticos 10, 11, 12 y 13
 
 Este es el repositorio de los trabajos prácticos descriptos en el título correspondientes a la materia 'Taller de Lenguajes II' de la carrera de Ingeniería en Informática de la Universidad Nacional de Tucumán.
 
+Lo que se realizó en los trabajos prácticos fue la realización de un tablero Kanban con logueo para administrador y operadores comunes, donde los administradores son quienes dan de alta los usuarios y pueden modificarlos o eliminarlos como en la metodología C.R.U.D (Create, Read, Update, Delete). 
+ 
 En el trabajo práctico 10 los temas que se abordaron fueron:
  - Modelo MVC en Asp Net Core
  - Vistas
