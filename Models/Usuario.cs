@@ -25,6 +25,11 @@ namespace tl2_tp10_2023_franciscojvicente.Models
             Rol = updateUserViewModel.Rol;
             Contrasenia = updateUserViewModel.Contrasenia;
         }
+
+        public Usuario(UpdatePassViewModel updatePassViewModel) {
+            Id = updatePassViewModel.Id;
+            Contrasenia = updatePassViewModel.Password;
+        }
         public Usuario() {
         }
     }

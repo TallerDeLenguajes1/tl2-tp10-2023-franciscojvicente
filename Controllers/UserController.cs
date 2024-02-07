@@ -131,6 +131,47 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult UpdatePass(int idUser) {
+            try
+            {
+                if(!IsLogged()) return RedirectToAction("Login/Index");
+                if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
+                var userWanted = _userRepository.GetById(idUser);
+                if (userWanted == null) return NoContent();
+                var passUpdate = new UpdatePassViewModel(userWanted.Contrasenia, idUser);
+                return View(passUpdate);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                TempData["ErrorMessage"] = ex.Message;
+                TempData["StackTrace"] = ex.StackTrace;
+                return RedirectToRoute(new {controller = "Home", action = "Error"});
+            }
+        }
+
+        [HttpPost]
+        public IActionResult? UpdatePass(UpdatePassViewModel updatePassViewModel)
+        {
+            try
+            {
+                if(!IsLogged()) return RedirectToAction("Login/Index");
+                if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
+                var user = new Usuario(updatePassViewModel);
+                _userRepository.UpdatePass(user.Contrasenia, user.Id);
+                _logger.LogInformation($"Usuario modificado correctamente");
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                TempData["ErrorMessage"] = ex.Message;
+                TempData["StackTrace"] = ex.StackTrace;
+                return RedirectToRoute(new {controller = "Home", action = "Error"});
+            }
+        }
+
         public IActionResult DeleteUser(int idUser)
         {
             try
