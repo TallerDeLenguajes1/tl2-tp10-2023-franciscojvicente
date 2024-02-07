@@ -21,20 +21,6 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             _cadenaConexion = cadenaConexion;
         }
 
-        // public void Create(Usuario usuario)
-        // {
-        //     var query = $"insert into Usuario (nombre_de_usuario, rol, contrasenia) values (@nombre_de_usuario, @rol, @contrasenia);";
-        //     using SQLiteConnection connection = new(_cadenaConexion);
-        //     connection.Open();
-        //     var command = new SQLiteCommand(query, connection);
-        //     command.Parameters.Add(new SQLiteParameter("@nombre_de_usuario", usuario.NombreDeUsuario));
-        //     command.Parameters.Add(new SQLiteParameter("@rol", usuario.Rol));
-        //     command.Parameters.Add(new SQLiteParameter("@contrasenia", usuario.Contrasenia));
-        //     var affectedRow = command.ExecuteNonQuery();
-        //     if (affectedRow == 0) throw new Exception("Se produjo un error al crear el usuario");
-        //     connection.Close();
-        // }
-
         public void Create(Usuario usuario)
         {
             var query = "INSERT INTO Usuario (nombre_de_usuario, rol, contrasenia) VALUES (@nombre_de_usuario, @rol, @contrasenia);";
@@ -140,18 +126,15 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             return usuario;     
         }
 
-        public void Update(Usuario usuario, int id)
+        public void Update(string username, Roles rol, int id)
         {
             SQLiteConnection connection = new(_cadenaConexion);
             SQLiteCommand command = connection.CreateCommand();
             command.CommandText = $"update Usuario set nombre_de_usuario = @nombre_de_usuario, rol = @rol where id = @id;";
             connection.Open();
             command.Parameters.Add(new SQLiteParameter("@id", id));
-            command.Parameters.Add(new SQLiteParameter("@nombre_de_usuario", usuario.NombreDeUsuario));
-            command.Parameters.Add(new SQLiteParameter("@rol", usuario.Rol));
-            // command.Parameters.Add(new SQLiteParameter("@contrasenia", usuario.Contrasenia));
-            // string hashedPassword = CalculateMD5Hash(usuario.Contrasenia);
-            // command.Parameters.Add(new SQLiteParameter("@contrasenia", hashedPassword));
+            command.Parameters.Add(new SQLiteParameter("@nombre_de_usuario", username));
+            command.Parameters.Add(new SQLiteParameter("@rol", rol));
             var affectedRow = command.ExecuteNonQuery();
             if (affectedRow == 0) throw new Exception("Se produjo un error al actualizar el usuario");
             connection.Close();
@@ -172,30 +155,6 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             connection.Close();
         }
 
-
-        // public Usuario Login(string nombre, string contrasenia) {
-        //     SQLiteConnection connection = new(_cadenaConexion);
-        //     SQLiteCommand command = connection.CreateCommand();
-        //     command.CommandText = @"SELECT * FROM usuario where nombre_de_usuario = @nombre_de_usuario and contrasenia = @contrasenia;";
-        //     command.Parameters.Add(new SQLiteParameter("@nombre_de_usuario", nombre));
-        //     command.Parameters.Add(new SQLiteParameter("@contrasenia", contrasenia));
-        //     connection.Open();
-        //     Usuario? usuario = null ;
-        //     using(SQLiteDataReader reader = command.ExecuteReader()) {
-        //         while (reader.Read())
-        //         {
-        //             usuario = new Usuario();
-        //             usuario.Id = Convert.ToInt32(reader["id"]);
-        //             usuario.NombreDeUsuario = reader["nombre_de_usuario"].ToString();
-        //             usuario.Rol = (tl2_tp10_2023_franciscojvicente.Models.Roles)(int.TryParse(reader["rol"].ToString(), out var i) ? i : 0);
-        //             usuario.Contrasenia = reader["contrasenia"].ToString();
-        //         }
-        //     }
-        //         connection.Close();
-        //         if (usuario == null) throw new Exception ($"Intento de acceso inválido - Usuario: {nombre} Clave ingresada: {contrasenia}");
-        //         return usuario;
-        // }
-
             public Usuario Login(string nombre, string contrasenia)
             {
                 SQLiteConnection connection = new(_cadenaConexion);
@@ -214,13 +173,10 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                         usuario.Id = Convert.ToInt32(reader["id"]);
                         usuario.NombreDeUsuario = reader["nombre_de_usuario"].ToString();
                         usuario.Rol = (tl2_tp10_2023_franciscojvicente.Models.Roles)(int.TryParse(reader["rol"].ToString(), out var i) ? i : 0);
-
                         // Obtén el hash almacenado en la base de datos
                         string hashedPasswordFromDatabase = reader["contrasenia"].ToString();
-
                         // Hashea la contraseña ingresada para compararla con el hash almacenado
                         string hashedPasswordEntered = CalculateMD5Hash(contrasenia);
-
                         // Compara los hashes
                         if (hashedPasswordFromDatabase.Equals(hashedPasswordEntered, StringComparison.OrdinalIgnoreCase))
                         {

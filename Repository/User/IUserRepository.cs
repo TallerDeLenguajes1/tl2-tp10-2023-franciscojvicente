@@ -11,7 +11,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
         > GetAll();
         public Usuario GetById(int id);
         public void Create(Usuario usuario);
-        public void Update(Usuario usuario, int id);
+        public void Update(string username, Roles rol, int id);
         public void UpdatePass(string pass, int id);
         public void Delete(int id);
         public Usuario Login(string nombre, string contrasenia);

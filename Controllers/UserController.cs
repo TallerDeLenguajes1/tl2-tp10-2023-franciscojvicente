@@ -23,11 +23,6 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             _logger = logger;
         }
 
-        // public UserController(IUserRepository userRepository, ILogger<HomeController> logger) {
-        //     _userRepository = userRepository;
-        //     _logger = logger;
-        // }
-
         public IActionResult Index()
         {
             try
@@ -70,7 +65,6 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
         {
             try
             {
-                // if(!ModelState.IsValid) return RedirectToAction("Index");
                 var usuario = new Usuario(createUserViewModel);
                 _userRepository.Create(usuario);
                 _logger.LogInformation($"Usuario {usuario.NombreDeUsuario} creado correctamente");
@@ -94,7 +88,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 var userWanted = _userRepository.GetById(idUser);
                 if (userWanted == null) return NoContent();
-                var userUpdate = new UpdateUserViewModel(userWanted);
+                var userUpdate = new UpdateUserViewModel(userWanted.NombreDeUsuario, (Roles)userWanted.Rol, userWanted.Id);
                 #pragma warning disable CS8629 // Desactivo warning de null
                 userUpdate.IdLogueado = (int)HttpContext.Session.GetInt32("Id");
                 #pragma warning restore CS8629 // Activo warning de null
@@ -116,9 +110,8 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
-                // if(!ModelState.IsValid) return RedirectToAction("Index");
                 var usuario = new Usuario(updateUserViewModel);
-                _userRepository.Update(usuario, usuario.Id);
+                _userRepository.Update(usuario.NombreDeUsuario, (Roles)usuario.Rol, usuario.Id);
                 _logger.LogInformation($"Usuario {usuario.NombreDeUsuario} modificado correctamente");
                 return RedirectToAction("Index");
             }
