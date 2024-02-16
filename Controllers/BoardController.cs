@@ -58,7 +58,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             {
                 if(!IsLogged()) return RedirectToRoute(new {controller = "Home", action = "Index"});
                 CreateBoardViewModel createBoardViewModel = new();
-                createBoardViewModel.Usuarios = _userRepository.GetAllID();
+                createBoardViewModel.Usuarios = _userRepository.GetAllName();
                 return View(createBoardViewModel);
             }
             catch (Exception ex)
@@ -100,7 +100,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 var tablero = _boardRepository.GetById(idTablero);
                 if (tablero == null) return NoContent();
                 UpdateBoardViewModel updateBoardViewModel = new(tablero);
-                updateBoardViewModel.Usuarios = _userRepository.GetAllID();
+                updateBoardViewModel.Usuarios = _userRepository.GetAllName();
                 return View(updateBoardViewModel);    
             }
             catch (Exception ex)

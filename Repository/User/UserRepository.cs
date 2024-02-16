@@ -105,6 +105,30 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             return usuarios;
         }
 
+        public List<UsuarioNameViewModel> GetAllName() {
+            var queryString = @"SELECT nombre_de_usuario, id FROM usuario;";
+            List<UsuarioNameViewModel> usuarios = new();
+            using (SQLiteConnection connection = new(_cadenaConexion))
+            {
+                SQLiteCommand command = new(queryString, connection);
+                connection.Open();
+            
+                using(SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var usuario = new UsuarioNameViewModel();
+                        usuario.Name = reader["nombre_de_usuario"].ToString();
+                        usuario.Id = Convert.ToInt32(reader["id"]);
+                        usuarios.Add(usuario);
+                    }
+                }
+                connection.Close();
+            }
+            if (usuarios == null) throw new Exception ($"No se encontraron usuarios en la base de datos");
+            return usuarios;
+        }
+
         public Usuario GetById(int id) {
             SQLiteConnection connection = new(_cadenaConexion);
             var usuario = new Usuario();

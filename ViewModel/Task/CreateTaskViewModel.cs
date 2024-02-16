@@ -23,9 +23,9 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel
         [Display(Name = "Color")] 
         public string? Color { get; set; }
 
-        [Display(Name = "Id del usuario asignado")] 
+        [Display(Name = "Usuario asignado")] 
         public int Id_usuario_asignado { get; set; }
-        public List<UsuarioIDViewModel>? Usuarios { get; set; }
+        public List<UsuarioNameViewModel>? Usuarios { get; set; }
 
         public CreateTaskViewModel(Tarea tarea)
         {
@@ -35,7 +35,7 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel
             Descripcion = tarea.Descripcion;
             Color = tarea.Color;
             Id_usuario_asignado = tarea.Id_usuario_asignado;
-            Usuarios = new List<UsuarioIDViewModel>();
+            Usuarios = new List<UsuarioNameViewModel>();
         }
         public CreateTaskViewModel() {
 

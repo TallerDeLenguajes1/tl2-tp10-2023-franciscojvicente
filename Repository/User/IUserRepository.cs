@@ -16,5 +16,6 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
         public void Delete(int id);
         public Usuario Login(string nombre, string contrasenia);
         public List<UsuarioIDViewModel> GetAllID();
+        public List<UsuarioNameViewModel> GetAllName();
     }
 }

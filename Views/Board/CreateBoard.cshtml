@@ -15,7 +15,7 @@
             <option selected>Seleccione uno</option>
             @foreach (var usuario in Model.Usuarios)
             {
-                <option>@usuario.Id</option>
+                <option value="@usuario.Id">@usuario.Name</option>
             }
         </select>
         <span asp-validation-for="@Model.Id_usuario_propietario" class="text-danger"></span>

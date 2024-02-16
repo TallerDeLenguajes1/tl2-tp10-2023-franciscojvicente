@@ -17,7 +17,8 @@ namespace tl2_tp10_2023_franciscojvicente.Repository {
         public void DeleteByUser(int idUser);
         public List<TableroIDViewModel> GetAllID();
         public List<Tablero> GetAllOwnAndAssigned(int idUser);
-        public List<TableroIDViewModel> GetAllIDByUser(int idUser);
+        public List<TableroNameViewModel> GetAllIDByUser(int idUser);
+        public List<TableroNameViewModel> GetAllName();
         
     }
 }

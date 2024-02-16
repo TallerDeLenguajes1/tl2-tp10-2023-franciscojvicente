@@ -105,17 +105,44 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
             return tableros;
         }
 
-        public List<TableroIDViewModel> GetAllIDByUser(int idUser)
+        public List<TableroNameViewModel> GetAllName()
+        {
+            var queryString = @"SELECT id, nombre FROM tablero;";
+            List<TableroNameViewModel> tableros = new();
+            using (SQLiteConnection connection = new(_cadenaConexion))
+            {
+                SQLiteCommand command = new(queryString, connection);
+                connection.Open();
+            
+                using(SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var tablero = new TableroNameViewModel
+                        {
+                            Id = Convert.ToInt32(reader["id"]),
+                            Name = reader["nombre"].ToString()
+                        };
+                        tableros.Add(tablero);
+                    }
+                }
+                connection.Close();
+            }
+            if (tableros == null) throw new Exception ($"No se encontraron tableros en la base de datos");
+            return tableros;
+        }
+
+        public List<TableroNameViewModel> GetAllIDByUser(int idUser)
         {
             SQLiteConnection connection = new(_cadenaConexion);
-            List<TableroIDViewModel> tableros = new();
+            List<TableroNameViewModel> tableros = new();
             SQLiteCommand command = connection.CreateCommand();
-            command.CommandText = "select id from Tablero where (Tablero.id_usuario_propietario = @idUser);";
+            command.CommandText = "select id, nombre from Tablero where (Tablero.id_usuario_propietario = @idUser);";
             command.Parameters.Add(new SQLiteParameter("@idUser", idUser));
             connection.Open();
             using (SQLiteDataReader reader = command.ExecuteReader()) {
                 while (reader.Read()) {
-                    var tablero = new TableroIDViewModel
+                    var tablero = new TableroNameViewModel
                         {
                             Id = Convert.ToInt32(reader["id"])
                         };

@@ -70,7 +70,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
                 CreateTaskViewModel createTaskViewModel = new();
-                createTaskViewModel.Usuarios = _userRepository.GetAllID();
+                createTaskViewModel.Usuarios = _userRepository.GetAllName();
                 createTaskViewModel.IdTablero = idBoard;
                 if (IsOperator())
                 {
@@ -124,7 +124,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 var tarea = _taskRepository.GetById(idTarea);
                 if (tarea == null) return NoContent();
                 UpdateTaskViewModel updateTaskViewModel = new(tarea);
-                updateTaskViewModel.Usuarios = _userRepository.GetAllID();
+                updateTaskViewModel.Usuarios = _userRepository.GetAllName();
                 if (IsOperator())
                 {
                     var idUser = HttpContext.Session.GetInt32("Id");
@@ -134,7 +134,7 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
                 }
                 if (IsAdmin())
                 {
-                    updateTaskViewModel.Tableros = _boardRepository.GetAllID();
+                    updateTaskViewModel.Tableros = _boardRepository.GetAllName();
                     return View(updateTaskViewModel); 
                 }
                 return NoContent(); 

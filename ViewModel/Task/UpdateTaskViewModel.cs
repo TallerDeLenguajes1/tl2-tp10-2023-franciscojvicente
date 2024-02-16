@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace tl2_tp10_2023_franciscojvicente.ViewModel {
     public class UpdateTaskViewModel
     {
-        [Display(Name = "Id del tablero")]
+        [Display(Name = "Tablero")]
         public int IdTablero { get; set; }
 
         [Required(ErrorMessage = "El nombre es requerido.")]
@@ -23,16 +23,16 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
         [Display(Name = "Color")] 
         public string? Color { get; set; }
 
-        [Display(Name = "Id del usuario asignado")] 
+        [Display(Name = "Usuario asignado")] 
         public int Id_usuario_asignado { get; set; }
-        public List<UsuarioIDViewModel>? Usuarios { get; set; }
-        public List<TableroIDViewModel>? Tableros { get; set; }
+        public List<UsuarioNameViewModel>? Usuarios { get; set; }
+        public List<TableroNameViewModel>? Tableros { get; set; }
         public int Id { get; set; }
 
         public UpdateTaskViewModel(Tarea tarea)
         {
-            Usuarios = new List<UsuarioIDViewModel>();
-            Tableros = new List<TableroIDViewModel>();
+            Usuarios = new List<UsuarioNameViewModel>();
+            Tableros = new List<TableroNameViewModel>();
             Id = tarea.Id;
             IdTablero = tarea.IdTablero;
             Nombre = tarea.Nombre;

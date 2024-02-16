@@ -5,10 +5,10 @@ using System.ComponentModel.DataAnnotations;
 namespace tl2_tp10_2023_franciscojvicente.ViewModel {
     public class UpdateBoardViewModel
     {
-        public List<UsuarioIDViewModel>? Usuarios { get; set; }
+        public List<UsuarioNameViewModel>? Usuarios { get; set; }
         public int Id { get; set; }
         
-        [Display(Name = "Id del usuario propietario")] 
+        [Display(Name = "Usuario propietario")] 
         public int Id_usuario_propietario { get; set; }
         
         [Required(ErrorMessage = "El nombre es requerido.")]
@@ -20,7 +20,7 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel {
 
         public UpdateBoardViewModel(Tablero tablero)
         {
-            Usuarios = new List<UsuarioIDViewModel>();
+            Usuarios = new List<UsuarioNameViewModel>();
             Id = tablero.Id;
             Id_usuario_propietario = tablero.Id_usuario_propietario;
             Nombre = tablero.Nombre;
