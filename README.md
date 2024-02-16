@@ -14,7 +14,7 @@ En el siguiente trabajo práctico, se vió:
  - Viewmodels
  - Validaciones
  - Cookies y variables de sesión (para las variables de sesión se incorporaron librerias para el manejo de las mismas con el siguiente comando 'dotnet Install-Package
-Microsoft.AspNetCore.Session'
+Microsoft.AspNetCore.Session')
 
 En el trabajo práctico 12 lo que se vió fue:
  - Inyección de dependencias
