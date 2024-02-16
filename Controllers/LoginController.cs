@@ -42,7 +42,9 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return RedirectToRoute(new { controller = "Login", action = "Index" });
+                TempData["ErrorMessage"] = ex.Message;
+                TempData["StackTrace"] = ex.StackTrace;
+                return RedirectToRoute(new { controller = "Home", action = "Error" });
             }
         }
 
