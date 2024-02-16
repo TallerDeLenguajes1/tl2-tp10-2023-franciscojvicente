@@ -9,99 +9,99 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = tp10_taller__copy_
 build_property.RootNamespace = tp10_taller__copy_
-build_property.ProjectDir = C:\Users\franv\Taller de Lenguajes II\Segundo Parcial\tp10-taller\tl2-tp10-2023-franciscojvicente\
+build_property.ProjectDir = c:\Users\franv\Taller de Lenguajes II\Segundo Parcial\tp10-taller\tl2-tp10-2023-franciscojvicente\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\franv\Taller de Lenguajes II\Segundo Parcial\tp10-taller\tl2-tp10-2023-franciscojvicente
+build_property.MSBuildProjectDirectory = c:\Users\franv\Taller de Lenguajes II\Segundo Parcial\tp10-taller\tl2-tp10-2023-franciscojvicente
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Board/CreateBoard.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Board/CreateBoard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRcQ3JlYXRlQm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Board/Index.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Board/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Board/UpdateBoard.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Board/UpdateBoard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRcVXBkYXRlQm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Home/Error.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Home/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Home/Index.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Home/Privacy.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Login/Index.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Shared/Error.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Shared/Index.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Shared/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Shared/_ValidationScriptsPartial.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Task/CreateTask.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Task/CreateTask.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza1xDcmVhdGVUYXNrLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Task/GetTasksInBoard.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Task/GetTasksInBoard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza1xHZXRUYXNrc0luQm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Task/Index.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Task/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Task/UpdateStatusTask.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Task/UpdateStatusTask.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza1xVcGRhdGVTdGF0dXNUYXNrLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Task/UpdateTask.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Task/UpdateTask.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza1xVcGRhdGVUYXNrLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/User/CreateUser.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/User/CreateUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxDcmVhdGVVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/User/Index.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/User/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/User/UpdatePass.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/User/UpdatePass.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxVcGRhdGVQYXNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/User/UpdateUser.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/User/UpdateUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxVcGRhdGVVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/_ViewImports.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/_ViewStart.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Shared/_Layout.cshtml]
+[c:/Users/franv/Taller de Lenguajes II/Segundo Parcial/tp10-taller/tl2-tp10-2023-franciscojvicente/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-2h9ag2tq5j

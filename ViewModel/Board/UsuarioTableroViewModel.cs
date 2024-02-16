@@ -1,6 +1,5 @@
 using tl2_tp10_2023_franciscojvicente.Models;
 using System.ComponentModel.DataAnnotations;
-// using MVC.Models;
 
 namespace tl2_tp10_2023_franciscojvicente.ViewModel {
     public class UsuarioTableroViewModel

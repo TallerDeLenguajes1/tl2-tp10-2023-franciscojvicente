@@ -6,11 +6,6 @@
 <h1 class="text-center text-primary">Cambiar Contraseña</h1>
 <form asp-controller="User" asp-action="UpdatePass">
     <input hidden asp-for="@Model.Id">
-    @* <div class="form-group">
-        <label asp-for="@Model.NombreDeUsuario" class="form-label"></label>
-        <input class="form-control w-50" asp-for="@Model.NombreDeUsuario">
-        <span asp-validation-for="@Model.NombreDeUsuario" class="text-danger"></span>
-    </div> *@
     <div class="form-group">
         <label asp-for="@Model.Password" class="form-label"></label>
         <input class="form-control w-50" asp-for="@Model.Password" type="password" value="@Model.Password">

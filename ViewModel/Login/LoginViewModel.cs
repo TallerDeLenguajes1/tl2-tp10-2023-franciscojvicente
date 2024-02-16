@@ -1,7 +1,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-
 namespace tl2_tp10_2023_franciscojvicente.ViewModel
 {
     public class LoginViewModel

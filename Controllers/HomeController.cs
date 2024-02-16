@@ -9,7 +9,6 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    // readonly UsuarioRepository repositorioUser = new();
 
     public HomeController(ILogger<HomeController> logger)
     {
@@ -37,6 +36,5 @@ public class HomeController : Controller
         ViewData["StackTrace"] = stackTrace;
 
         return View();
-        // return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

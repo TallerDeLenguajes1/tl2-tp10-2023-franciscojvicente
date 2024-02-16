@@ -57,10 +57,8 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             try
             {
                 if(!IsLogged()) return RedirectToRoute(new {controller = "Home", action = "Index"});
-                // if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
                 CreateBoardViewModel createBoardViewModel = new();
                 createBoardViewModel.Usuarios = _userRepository.GetAllID();
-                // if (createBoardViewModel.Usuarios == null) return NoContent();
                 return View(createBoardViewModel);
             }
             catch (Exception ex)
@@ -78,11 +76,8 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             try
             {    
                 if(!IsLogged()) return RedirectToRoute(new {controller = "Home", action = "Index"});
-                // if(!IsAdmin()) return RedirectToRoute(new { controller = "Home", action = "Index" });
-                // if(!ModelState.IsValid) return RedirectToAction("Index");
                 var tablero = new Tablero(createBoardViewModel);
                 if (tablero == null) return null;
-                // tablero.Id_usuario_propietario = (int)HttpContext.Session.GetInt32("Id");
                 _boardRepository.Create(tablero);
                 _logger.LogInformation($"Tablero {tablero.Nombre} creado correctamente");
                 return RedirectToAction("Index");
@@ -123,7 +118,6 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             try
             {
                 if(!IsLogged()) return RedirectToAction("Login/Index");
-                // if(!ModelState.IsValid) return RedirectToAction("Index");
                 var tablero = new Tablero(updateBoardViewModel);
                 _boardRepository.Update(tablero, tablero.Id);
                 _logger.LogInformation($"Tablero {tablero.Nombre} modificado correctamente");
@@ -174,11 +168,5 @@ namespace tl2_tp10_2023_franciscojvicente.Controllers
             if (HttpContext.Session.GetString("Rol") == "Operador") return true;
             return false;
         }
-
-        // [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        // public IActionResult Error()
-        // {
-        //     return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        // }
     }
 }
