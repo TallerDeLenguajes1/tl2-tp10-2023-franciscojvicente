@@ -11,7 +11,6 @@
 <table class="table">
   <thead class="text-center">
     <tr>
-      <th scope="col">Id</th>
       <th scope="col">Nombre de Usuario</th>
       <th scope="col">Rol</th>
       <th></th>
@@ -20,8 +19,7 @@
   <tbody class="text-center">
     @foreach (var usuario in Model.Usuarios) {
     <tr>
-        <th scope="row">@usuario.Id</th>
-        <th>@usuario.NombreDeUsuario</th>
+        <th scope="row">@usuario.NombreDeUsuario</th>
         <th>@usuario.Rol</th>
         <td>
           <a class="text-decoration-none me-1 btn btn-primary" asp-controller="User" asp-action="UpdateUser" asp-route-idUser="@usuario.Id">Editar</a>

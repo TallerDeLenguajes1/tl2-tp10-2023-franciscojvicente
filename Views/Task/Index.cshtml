@@ -18,7 +18,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Id</th>
             <th scope="col">Id Tablero</th>
             <th scope="col">Nombre</th>
             <th scope="col">Estado</th>
@@ -31,7 +30,6 @@
     <tbody>
         @foreach (var tarea in Model.Tareas) {
             <tr>
-                <th scope="row">@tarea.Id</th>
                 <th scope="row">@tarea.IdTablero</th>
                 <th scope="row">@tarea.Nombre</th>
                 <th scope="row">@tarea.EstadoTarea</th>

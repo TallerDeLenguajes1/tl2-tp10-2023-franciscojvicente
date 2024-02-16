@@ -13,8 +13,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Id Usuario Propietario</th>
+            <th scope="col">Usuario Propietario</th>
             <th scope="col">Nombre</th>
             <th scope="col">Descripción</th>
             <th></th>
@@ -25,7 +24,6 @@
     <tbody>
         @foreach (var tablero in Model.Tableros) {
             <tr>
-                <th scope="row">@tablero.Id</th>
                 <th scope="row">@tablero.Id_usuario_propietario</th>
                 <th scope="row">@tablero.Nombre</th>
                 <th scope="row">@tablero.Descripcion</th>
