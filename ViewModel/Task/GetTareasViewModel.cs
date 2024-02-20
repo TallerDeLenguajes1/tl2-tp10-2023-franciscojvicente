@@ -4,9 +4,9 @@ namespace tl2_tp10_2023_franciscojvicente.ViewModel
 {
     public class GetTareasViewModel
     {
-        public List<Tarea>? Tareas { get; set; }
+        public List<TaskViewModel>? Tareas { get; set; }
 
-        public GetTareasViewModel(List<Tarea> tareas) {
+        public GetTareasViewModel(List<TaskViewModel> tareas) {
             Tareas = tareas;
         }
     }

@@ -55,21 +55,22 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
             connection.Close();
         }
 
-        public List<Tablero> GetAll()
+        public List<TableroViewModel> GetAll()
         {
             SQLiteConnection connection = new(_cadenaConexion);
-            List<Tablero> tableros = new();
+            List<TableroViewModel> tableros = new();
             SQLiteCommand command = connection.CreateCommand();
-            command.CommandText = "select * from Tablero";
+            command.CommandText = "select t.id, t.id_usuario_propietario, usuario.nombre_de_usuario, t.nombre, t.descripcion from usuario inner join tablero t on (usuario.id = t.id_usuario_propietario);";
             connection.Open();
             using (SQLiteDataReader reader = command.ExecuteReader()) {
                 while (reader.Read()) {
-                    var tablero = new Tablero
+                    var tablero = new TableroViewModel
                         {
                             Id = Convert.ToInt32(reader["id"]),
                             Id_usuario_propietario = Convert.ToInt32(reader["id_usuario_propietario"]),
                             Nombre = reader["nombre"].ToString(),
-                            Descripcion = reader["descripcion"].ToString()
+                            Descripcion = reader["descripcion"].ToString(),
+                            NombreProp = reader["nombre_de_usuario"].ToString()
                         };
                         tableros.Add(tablero);
                 }
@@ -201,22 +202,23 @@ namespace tl2_tp10_2023_franciscojvicente.Repository  {
             return tablero;
         }
 
-        public List<Tablero> GetAllOwnAndAssigned(int idUser) // tableros propios y en los que tiene tareas
+        public List<TableroViewModel> GetAllOwnAndAssigned(int idUser) // tableros propios y en los que tiene tareas
         {
             SQLiteConnection connection = new(_cadenaConexion);
-            List<Tablero> tableros = new();
+            List<TableroViewModel> tableros = new();
             SQLiteCommand command = connection.CreateCommand();
-            command.CommandText = "select t.id, t.id_usuario_propietario, t.nombre, t.descripcion from tablero t inner join tarea on (tarea.id_tablero = t.id and tarea.id_usuario_asignado = @idUser) union select * from tablero where id_usuario_propietario = @idUser order by id_usuario_propietario asc;";
+            command.CommandText = "SELECT DISTINCT T.id, T.nombre, T.id_usuario_propietario, T.descripcion, U.nombre_de_usuario FROM TABLERO T JOIN USUARIO U ON T.id_usuario_propietario = U.id LEFT JOIN TAREA TT ON T.id = TT.id_tablero WHERE T.id_usuario_propietario = @idUser OR TT.id_usuario_asignado = @idUser;";
             command.Parameters.Add(new SQLiteParameter("@idUser", idUser));
             connection.Open();
             using (SQLiteDataReader reader = command.ExecuteReader()) {
                 while (reader.Read()) {
-                    var tablero = new Tablero
+                    var tablero = new TableroViewModel
                         {
                             Id = Convert.ToInt32(reader["id"]),
                             Id_usuario_propietario = Convert.ToInt32(reader["id_usuario_propietario"]),
                             Nombre = reader["nombre"].ToString(),
-                            Descripcion = reader["descripcion"].ToString()
+                            Descripcion = reader["descripcion"].ToString(),
+                            NombreProp = reader["nombre_de_usuario"].ToString()
                         };
                         tableros.Add(tablero);
                 }

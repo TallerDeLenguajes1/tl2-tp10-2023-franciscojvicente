@@ -17,12 +17,12 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Id Tablero</th>
+            <th scope="col">Tablero</th>
             <th scope="col">Nombre</th>
             <th scope="col">Estado</th>
             <th scope="col">Descripción</th>
             <th scope="col">Color</th>
-            <th scope="col">Id Usuario Asignado</th>
+            <th scope="col">Usuario Asignado</th>
             <th></th>
             <th></th>
             <th></th>
@@ -31,12 +31,12 @@
     <tbody>
         @foreach (var tarea in Model.Tareas) {
             <tr>
-                <th scope="row">@tarea.IdTablero</th>
+                <th scope="row">@tarea.OwnerBoard</th>
                 <th scope="row">@tarea.Nombre</th>
                 <th scope="row">@tarea.EstadoTarea</th>
                 <th scope="row">@tarea.Descripcion</th>
                 <th scope="row">@tarea.Color</th>
-                <th scope="row">@tarea.Id_usuario_asignado</th>
+                <th scope="row">@tarea.NombreProp</th>
                 @if (tarea.Id_usuario_asignado == id && tarea.Id_usuario_asignado != @Model.IdOwnerBoard) {
                     <td>
                         <a class="text-decoration-none me-1 btn btn-primary" asp-controller="Task" asp-action="UpdateStatusTask" asp-route-idTask="@tarea.Id" asp-route-idBoard="@tarea.IdTablero">Cambiar Estado</a>

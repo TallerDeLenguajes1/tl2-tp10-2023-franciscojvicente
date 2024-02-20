@@ -11,12 +11,12 @@ namespace tl2_tp10_2023_franciscojvicente.Repository {
         public Tablero GetById(int idTablero);
         public void Create(Tablero tablero);
         public void Update(Tablero tablero, int idTablero);
-        public List<Tablero> GetAll();
+        public List<TableroViewModel> GetAll();
         public List<Tablero> GetAllByUser(int idUser);
         public void Delete(int idTablero);
         public void DeleteByUser(int idUser);
         public List<TableroIDViewModel> GetAllID();
-        public List<Tablero> GetAllOwnAndAssigned(int idUser);
+        public List<TableroViewModel> GetAllOwnAndAssigned(int idUser);
         public List<TableroNameViewModel> GetAllIDByUser(int idUser);
         public List<TableroNameViewModel> GetAllName();
         

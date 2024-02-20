@@ -8,9 +8,9 @@ using tl2_tp10_2023_franciscojvicente.ViewModel;
 namespace tl2_tp10_2023_franciscojvicente.Repository  {
     public interface ITaskRepository
     {
-        public List<Tarea> GetAll();
-        public List<Tarea> GetAllTareasByUser(int idUser);
-        public List<Tarea> GetAllTareasByTablero(int idTablero);
+        public List<TaskViewModel> GetAll();
+        public List<TaskViewModel> GetAllTareasByUser(int idUser);
+        public List<TaskViewModel> GetAllTareasByTablero(int idTablero);
         public Tarea GetById(int idTarea);
         public void Create(Tarea tarea);
         public void Update(Tarea tarea, int idTarea);

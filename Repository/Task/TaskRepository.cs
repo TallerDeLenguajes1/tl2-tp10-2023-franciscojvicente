@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Data.SqlClient;
 using tl2_tp10_2023_franciscojvicente.Models;
+using tl2_tp10_2023_franciscojvicente.ViewModel;
 
 namespace tl2_tp10_2023_franciscojvicente.Repository 
 {
@@ -69,17 +70,17 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             connection.Close();
         }
 
-        public List<Tarea> GetAllTareasByTablero(int idTablero)
+        public List<TaskViewModel> GetAllTareasByTablero(int idTablero)
         {
             SQLiteConnection connection = new(_cadenaConexion);
-            List<Tarea> tareas = new();
+            List<TaskViewModel> tareas = new();
             SQLiteCommand command = connection.CreateCommand();
-            command.CommandText = "select * from Tarea where (Tarea.id_tablero = @idTablero);";
+            command.CommandText = "SELECT T.id, T.id_tablero, T.nombre, T.estado, T.descripcion, T.color, T.id_usuario_asignado, U.nombre_de_usuario, TB.nombre AS nombre_tablero FROM TAREA T LEFT JOIN USUARIO U ON T.id_usuario_asignado = U.id INNER JOIN TABLERO TB ON T.id_tablero = TB.id WHERE T.id_tablero = @idTablero;";
             command.Parameters.Add(new SQLiteParameter("@idTablero", idTablero));
             connection.Open();
             using (SQLiteDataReader reader = command.ExecuteReader()) {
                 while (reader.Read()) {
-                    Tarea tarea = new()
+                    TaskViewModel tarea = new()
                     {
                         Id = Convert.ToInt32(reader["id"]),
                         IdTablero = Convert.ToInt32(reader["id_tablero"]),
@@ -87,7 +88,9 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                         EstadoTarea = (tl2_tp10_2023_franciscojvicente.Models.StatusTask)(int.TryParse(reader["estado"].ToString(), out var i)? i: 0),
                         Descripcion = reader["descripcion"].ToString(),
                         Color = reader["color"].ToString(),
-                        Id_usuario_asignado = Convert.ToInt32(reader["id_usuario_asignado"])
+                        Id_usuario_asignado = Convert.ToInt32(reader["id_usuario_asignado"]),
+                        NombreProp = reader["nombre_de_usuario"].ToString(),
+                        OwnerBoard = reader["nombre_tablero"].ToString(),
                     };
                     tareas.Add(tarea);
                 }
@@ -97,26 +100,26 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             return tareas;
         }
 
-        public List<Tarea> GetAllTareasByUser(int idUser)
+        public List<TaskViewModel> GetAllTareasByUser(int idUser)
         {
             SQLiteConnection connection = new(_cadenaConexion);
-            List<Tarea> tareas = new();
+            List<TaskViewModel> tareas = new();
             SQLiteCommand command = connection.CreateCommand();
-            command.CommandText = "select * from Tarea where (Tarea.id_usuario_asignado = @idUser);";
+            command.CommandText = "SELECT T.id, T.id_tablero, T.nombre, T.estado, T.descripcion, T.color, T.id_usuario_asignado, U.nombre_de_usuario, TB.nombre AS nombre_tablero FROM TAREA T LEFT JOIN USUARIO U ON T.id_usuario_asignado = U.id INNER JOIN TABLERO TB ON T.id_tablero = TB.id WHERE T.id_usuario_asignado = @idUser;";
             command.Parameters.Add(new SQLiteParameter("@idUser", idUser));
             connection.Open();
             using (SQLiteDataReader reader = command.ExecuteReader()) {
                 while (reader.Read()) {
-                    Tarea tarea = new()
-                    {
-                        Id = Convert.ToInt32(reader["id"]),
-                        IdTablero = Convert.ToInt32(reader["id_tablero"]),
-                        Nombre = reader["nombre"].ToString(),
-                        EstadoTarea = (tl2_tp10_2023_franciscojvicente.Models.StatusTask)(int.TryParse(reader["estado"].ToString(), out var i)? i: 0),
-                        Descripcion = reader["descripcion"].ToString(),
-                        Color = reader["color"].ToString(),
-                        Id_usuario_asignado = Convert.ToInt32(reader["id_usuario_asignado"])
-                    };
+                    var tarea = new TaskViewModel();
+                        tarea.Id = Convert.ToInt32(reader["id"]);
+                        tarea.IdTablero = Convert.ToInt32(reader["id_tablero"]);
+                        tarea.Nombre = reader["nombre"].ToString();
+                        tarea.EstadoTarea = (tl2_tp10_2023_franciscojvicente.Models.StatusTask)(int.TryParse(reader["estado"].ToString(), out var i) ? i : 0);
+                        tarea.Descripcion = reader["descripcion"].ToString();
+                        tarea.Color = reader["color"].ToString();
+                        tarea.Id_usuario_asignado = Convert.ToInt32(reader["id_usuario_asignado"]);
+                        tarea.NombreProp = reader["nombre_de_usuario"].ToString();
+                        tarea.OwnerBoard = reader["nombre_tablero"].ToString();
                     tareas.Add(tarea);
                 }
             }
@@ -181,10 +184,10 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
             connection.Close();  
         }
 
-        public List<Tarea> GetAll()
+        public List<TaskViewModel> GetAll()
         {
-            var queryString = "SELECT * FROM Tarea;";
-            List<Tarea> tareas = new List<Tarea>();
+            var queryString = "SELECT T.id, T.nombre, T.estado, T.descripcion, T.color, U.nombre_de_usuario AS nombre_usuario_asignado, TB.nombre AS nombre_tablero FROM TAREA T LEFT JOIN USUARIO U ON T.id_usuario_asignado = U.id INNER JOIN TABLERO TB ON T.id_tablero = TB.id;";
+            List<TaskViewModel> tareas = new List<TaskViewModel>();
             using (SQLiteConnection connection = new SQLiteConnection(_cadenaConexion))
             {
                 connection.Open();
@@ -194,7 +197,7 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                     {
                         while (reader.Read())
                         {
-                            var tarea = new Tarea();
+                            var tarea = new TaskViewModel();
                             tarea.Id = Convert.ToInt32(reader["id"]);
                             tarea.IdTablero = Convert.ToInt32(reader["id_tablero"]);
                             tarea.Nombre = reader["nombre"].ToString();
@@ -202,6 +205,8 @@ namespace tl2_tp10_2023_franciscojvicente.Repository
                             tarea.Descripcion = reader["descripcion"].ToString();
                             tarea.Color = reader["color"].ToString();
                             tarea.Id_usuario_asignado = Convert.ToInt32(reader["id_usuario_asignado"]);
+                            tarea.NombreProp = reader["nombre_de_usuario"].ToString();
+                            tarea.OwnerBoard = reader["nombre"].ToString();
                             tareas.Add(tarea);
                         }
                     }

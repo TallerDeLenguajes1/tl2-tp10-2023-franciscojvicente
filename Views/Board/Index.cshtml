@@ -24,7 +24,7 @@
     <tbody>
         @foreach (var tablero in Model.Tableros) {
             <tr>
-                <th scope="row">@tablero.Id_usuario_propietario</th>
+                <th scope="row">@tablero.NombreProp</th>
                 <th scope="row">@tablero.Nombre</th>
                 <th scope="row">@tablero.Descripcion</th>
                 @if (tablero.Id_usuario_propietario == id || rol == "Administrador") {
